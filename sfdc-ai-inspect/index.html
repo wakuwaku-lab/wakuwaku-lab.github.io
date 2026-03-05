@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFDC AI Inspect - Salesforce開発の生産性を最大化</title>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600&f[]=satoshi@400,500,700&display=swap">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #16161f;
+            --bg-card: #1c1c28;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #ff4d4d;
+            --accent-glow: rgba(255, 77, 77, 0.4);
+            --accent-secondary: #ff6b6b;
+            
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            
+            --title-size: clamp(1.8rem, 5vw, 4rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.5rem);
+            --h3-size: clamp(1rem, 2vw, 1.5rem);
+            --body-size: clamp(0.75rem, 1.2vw, 1rem);
+            --small-size: clamp(0.65rem, 0.9vw, 0.8rem);
+            
+            --slide-padding: clamp(1.5rem, 4vw, 4rem);
+            --content-gap: clamp(1rem, 2vw, 2rem);
+            --element-gap: clamp(0.4rem, 1vw, 1rem);
+            
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            height: 100%;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            padding: var(--slide-padding);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+        }
+
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--accent);
+        }
+
+        .accent-bar-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--title-size);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--content-gap);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: var(--h2-size);
+            font-weight: 600;
+            margin-bottom: var(--content-gap);
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            font-weight: 600;
+            margin-bottom: var(--element-gap);
+        }
+
+        p {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            font-size: var(--small-size);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: var(--content-gap);
+            width: fit-content;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--content-gap);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: var(--content-gap);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: var(--element-gap);
+        }
+
+        .card h3 {
+            color: var(--text-primary);
+        }
+
+        .card p {
+            font-size: var(--small-size);
+        }
+
+        .bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--element-gap);
+        }
+
+        .bullet-list li {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--content-gap);
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .feature-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--content-gap);
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: var(--body-size);
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: var(--content-gap);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .slide.title-slide {
+            background:
+                radial-gradient(ellipse at 30% 80%, var(--accent-glow) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+
+        .slide.dark-gradient {
+            background:
+                radial-gradient(ellipse at 70% 20%, rgba(255, 77, 77, 0.1) 0%, transparent 40%),
+                var(--bg-primary);
+        }
+
+        .slide.card-bg {
+            background: var(--bg-secondary);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide.visible .reveal:nth-child(1) { transition-delay: 0.1s; }
+        .slide.visible .reveal:nth-child(2) { transition-delay: 0.2s; }
+        .slide.visible .reveal:nth-child(3) { transition-delay: 0.3s; }
+        .slide.visible .reveal:nth-child(4) { transition-delay: 0.4s; }
+        .slide.visible .reveal:nth-child(5) { transition-delay: 0.5s; }
+        .slide.visible .reveal:nth-child(6) { transition-delay: 0.6s; }
+
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(1rem, 3vw, 2rem);
+                --content-gap: clamp(0.5rem, 1.5vw, 1rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: opacity 0.3s ease;
+                transform: none;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .edit-hotzone {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            z-index: 10000;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .edit-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 10001;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .edit-toggle.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        [contenteditable="true"] {
+            outline: 2px dashed var(--accent);
+            border-radius: 4px;
+            padding: 0.2rem;
+        }
+
+        .save-indicator {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10002;
+        }
+
+        .save-indicator.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <div class="edit-hotzone" id="editHotzone"></div>
+    <button class="edit-toggle" id="editToggle" title="编辑模式 (E)">✏️</button>
+    <div class="save-indicator" id="saveIndicator">已保存到 localStorage</div>
+
+    <section class="slide title-slide">
+        <div class="slide-content">
+            <span class="tag reveal">Chrome Extension</span>
+            <h1 class="reveal" contenteditable="false">SFDC AI Inspect</h1>
+            <p class="subtitle reveal" contenteditable="false">Salesforce開発の生産性を最大化する拡張機能</p>
+            <p class="reveal" contenteditable="false" style="margin-top: 1rem; font-size: var(--small-size);">AI Agentを中心に、日常の運用・開発・調査を「会話ベース」で高速化</p>
+        </div>
+    </section>
+
+    <section class="slide dark-gradient">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">現在の課題</h2>
+            <div class="grid" style="margin-top: var(--content-gap);">
+                <div class="card reveal">
+                    <h3>情報の分散</h3>
+                    <p>複数のツールを切り替えながらの開発・調査</p>
+                </div>
+                <div class="card reveal">
+                    <h3>繰り返しの作業</h3>
+                    <p>同じ操作の繰り返しで時間を奪われる</p>
+                </div>
+                <div class="card reveal">
+                    <h3>複雑なSOQL</h3>
+                    <p>データ查询に時間と労力を要する</p>
+                </div>
+                <div class="card reveal">
+                    <h3>ログ調査</h3>
+                    <p>原因特定のまでに長い時間を要する</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">SFDC AI Inspect とは</h2>
+            <p class="reveal" style="margin-bottom: var(--content-gap); max-width: 700px;">既存の複数のツールを1つの洗練されたUIに統合した、モダンなChrome拡張機能。AI Agentを中心に、日常の運用・開発・調査を「会話ベース」で高速化できます。</p>
+            <div class="reveal">
+                <span class="tag" style="background: var(--accent-secondary);">8つのコア機能</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide card-bg">
+        <div class="slide-content">
+            <h2 class="reveal">🤖 AI Agent Workspace</h2>
+            <p class="reveal" style="margin-bottom: var(--content-gap);">Salesforceを自然言語で操作できるAIワークスペース</p>
+            <ul class="bullet-list reveal">
+                <li>質問すると、そのまま実務で使える回答を返す</li>
+                <li><span class="highlight">75+</span> のLLMプロバイダーに接続可能（GPT / Claude / Gemini）</li>
+                <li>コスト・性能に合わせてモデル/プロバイダーを切り替え可能</li>
+                <li>Local Model Ready（Ollama対応）</li>
+                <li>Custom MCP Integrationで機能を拡張可能</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide dark-gradient">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">📊 Data Expert</h2>
+            <p class="reveal" style="margin-bottom: var(--content-gap);">データ管理をAIで加速する、Excelライクな実務UI</p>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-icon">📋</div>
+                    <h3>Excel-like UI</h3>
+                    <p>見やすくレスポンシブなテーブルでデータを検索・編集</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">⚡</div>
+                    <h3>Bulk Operations</h3>
+                    <p>Insert / Update / Upsert / Delete の一括操作</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🔍</div>
+                    <h3>SOQL Helper</h3>
+                    <p>フォーマットとフィールド補助でSOQL作成を高速化</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🤖</div>
+                    <h3>AI to SOQL</h3>
+                    <p>自然言語からSOQLを生成</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">📜 Log Expert + AI Analysis</h2>
+            <p class="reveal" style="margin-bottom: var(--content-gap);">ログ調査をAIで短時間化し、原因特定を支援</p>
+            <div class="two-col">
+                <div>
+                    <ul class="bullet-list reveal">
+                        <li>最新デバッグログをすぐ取得・確認</li>
+                        <li>ユーザー、ステータス、時間など多軸で絞り込み</li>
+                        <li>AIが根本原因の候補を要約</li>
+                    </ul>
+                </div>
+                <div class="card reveal" style="background: var(--bg-primary);">
+                    <h3 style="color: var(--accent);">AI Summary</h3>
+                    <p>原因の候補、証拠、改善案をAIが自動要約</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide card-bg">
+        <div class="slide-content">
+            <h2 class="reveal">🛠️ その他の主要機能</h2>
+            <div class="grid" style="margin-top: var(--content-gap);">
+                <div class="card reveal">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Architecture & Docs</h3>
+                    <p>Flowロジックを可視化、AIで設計把握とドキュメント生成</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🚀</div>
+                    <h3>Quick Navigation</h3>
+                    <p>Ctrl+Iでどこからでも設定リンク・オブジェクトを即検索</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🔍</div>
+                    <h3>Record Inspector</h3>
+                    <p>現在ページから直接レコード詳細を表示・編集</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🔌</div>
+                    <h3>REST Tool</h3>
+                    <p>SalesforceエンドポイントへRESTリクエストを即送信</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🕸️</div>
+                    <h3>ER Diagram</h3>
+                    <p>選択したオブジェクトからER図をMermaid形式で出力</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide dark-gradient">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">👔 企業導入のメリット</h2>
+            <div class="grid" style="margin-top: var(--content-gap);">
+                <div class="card reveal">
+                    <h3>🚀 生産性(ROI)の向上</h3>
+                    <p>「隠れた項目」を探したり複雑なSOQLツールを立ち上げる時間を削減し、コアなビジネスロジックの開発に集中できます。</p>
+                </div>
+                <div class="card reveal">
+                    <h3>👁️ ナレッジの可視化</h3>
+                    <p>ER図やアーキテクチャマップを簡単に生成でき、属人化を防ぎ、新メンバーのキャッチアップを加速させます。</p>
+                </div>
+                <div class="card reveal">
+                    <h3>💰 コスト削減</h3>
+                    <p>複数のアドオンを使い分ける必要がなくなり、学習コストとツール管理の手間を最小限に抑えられます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">🔒 セキュリティとプライバシー</h2>
+            <ul class="bullet-list reveal" style="margin-top: var(--content-gap);">
+                <li><span class="highlight">ローカル動作</span> - すべての処理はブラウザ内で完結</li>
+                <li><span class="highlight">外部送信なし</span> - データや認証情報が外部サーバーに保存されることはなし</li>
+                <li><span class="highlight">直接通信</span> - 認証された自身のSalesforce組織とのみ通信</li>
+                <li><span class="highlight">標準API</span> - Salesforceの標準APIとセーフなセッション管理を使用</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide title-slide">
+        <div class="slide-content" style="text-align: center;">
+            <h2 class="reveal" style="font-size: var(--h2-size);">🛠 インストール方法</h2>
+            <p class="reveal" style="margin: var(--content-gap) 0;">Chrome Web Storeから簡単に追加できます</p>
+            <a href="https://chromewebstore.google.com/detail/sfdc-inspect-salesforce-q/kmcdodpdhoomiedbfdkeglhfebbjgolf" target="_blank" class="cta-button reveal">Chrome ストアでインストール</a>
+            <div class="reveal" style="margin-top: var(--content-gap);">
+                <p style="font-size: var(--small-size);">Author: exia.huang | <a href="https://salesforcexytools.com/" style="color: var(--accent);">HomePage</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="accent-bar"></div>
+        <div class="slide-content">
+            <h2 class="reveal">🚀 開発の裏側</h2>
+            <p class="reveal" style="margin-bottom: var(--content-gap);">ChatGPT および Gemini などの最新AIを活用してスピード感を持って開発されました</p>
+            <div class="card reveal" style="margin-bottom: var(--content-gap);">
+                <h3>Salesforce MCP Server</h3>
+                <p>自社開発のMCPサーバーを採用することで、業務に合わせた拡張・保守・機能追加を行いやすくしています</p>
+                <p style="margin-top: 0.5rem; font-size: var(--small-size);"><a href="https://github.com/exiahuang/salesforce-mcp" style="color: var(--accent);">github.com/exiahuang/salesforce-mcp</a></p>
+            </div>
+            <p class="reveal" style="font-size: var(--small-size);">フィードバック: <a href="https://github.com/exiahuang/sfdc-inspect/issues" style="color: var(--accent);">GitHub Issues</a> からお気軽に！</p>
+        </div>
+    </section>
+
+    <section class="slide title-slide">
+        <div class="slide-content" style="text-align: center;">
+            <h1 class="reveal">Thank You!</h1>
+            <p class="subtitle reveal">SFDC AI Inspect で Salesforce 开发をシンプルに</p>
+            <a href="https://chromewebstore.google.com/detail/sfdc-inspect-salesforce-q/kmcdodpdhoomiedbfdkeglhfebbjgolf" target="_blank" class="cta-button reveal">今すぐ試す</a>
+        </div>
+    </section>
+
+    <script>
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.progressBar = document.getElementById('progressBar');
+                this.navDots = document.getElementById('navDots');
+                this.currentSlide = 0;
+                this.editMode = false;
+                
+                this.init();
+            }
+
+            init() {
+                this.createNavDots();
+                this.bindEvents();
+                this.loadFromStorage();
+                this.updateSlide(0);
+            }
+
+            createNavDots() {
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'nav-dot';
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    this.navDots.appendChild(dot);
+                });
+            }
+
+            bindEvents() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
+                        e.preventDefault();
+                        this.nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        this.prevSlide();
+                    } else if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) {
+                        this.toggleEditMode();
+                    } else if (e.ctrlKey && e.key === 's') {
+                        e.preventDefault();
+                        this.saveToStorage();
+                    }
+                });
+
+                window.addEventListener('scroll', () => {
+                    this.handleScroll();
+                });
+
+                const editToggle = document.getElementById('editToggle');
+                const editHotzone = document.getElementById('editHotzone');
+                let hideTimeout = null;
+
+                editToggle.addEventListener('click', () => {
+                    this.toggleEditMode();
+                });
+
+                editHotzone.addEventListener('mouseenter', () => {
+                    clearTimeout(hideTimeout);
+                    editToggle.classList.add('show');
+                });
+
+                editHotzone.addEventListener('mouseleave', () => {
+                    hideTimeout = setTimeout(() => {
+                        if (!this.editMode) editToggle.classList.remove('show');
+                    }, 400);
+                });
+
+                editHotzone.addEventListener('click', () => {
+                    this.toggleEditMode();
+                });
+            }
+
+            toggleEditMode() {
+                this.editMode = !this.editMode;
+                const editToggle = document.getElementById('editToggle');
+                
+                if (this.editMode) {
+                    editToggle.classList.add('show', 'active');
+                    document.querySelectorAll('h1, h2, h3, p, li, .tag').forEach(el => {
+                        if (!el.classList.contains('cta-button')) {
+                            el.setAttribute('contenteditable', 'true');
+                        }
+                    });
+                } else {
+                    editToggle.classList.remove('active');
+                    document.querySelectorAll('[contenteditable]').forEach(el => {
+                        el.removeAttribute('contenteditable');
+                    });
+                    this.saveToStorage();
+                }
+            }
+
+            saveToStorage() {
+                const content = document.body.innerHTML;
+                localStorage.setItem('sfdc-ai-inspect-slides', content);
+                this.showSaveIndicator();
+            }
+
+            loadFromStorage() {
+                const content = localStorage.getItem('sfdc-ai-inspect-slides');
+                if (content) {
+                    document.body.innerHTML = content;
+                    this.slides = document.querySelectorAll('.slide');
+                    this.init();
+                }
+            }
+
+            showSaveIndicator() {
+                const indicator = document.getElementById('saveIndicator');
+                indicator.classList.add('show');
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, 2000);
+            }
+
+            handleScroll() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                this.progressBar.style.width = progress + '%';
+
+                const scrollPos = scrollTop + window.innerHeight / 2;
+                this.slides.forEach((slide, index) => {
+                    const slideTop = slide.offsetTop;
+                    const slideHeight = slide.offsetHeight;
+                    if (scrollPos >= slideTop && scrollPos < slideTop + slideHeight) {
+                        this.updateSlide(index);
+                    }
+                });
+            }
+
+            updateSlide(index) {
+                this.currentSlide = index;
+                this.slides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.classList.add('visible');
+                    } else {
+                        slide.classList.remove('visible');
+                    }
+                });
+
+                document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            goToSlide(index) {
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        new SlidePresentation();
+    </script>
+</body>
+</html>
