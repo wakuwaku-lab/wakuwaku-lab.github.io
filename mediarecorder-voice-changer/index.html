@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>MediaRecorder Voice Changer</title>
+	<script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.js" defer></script>
+	<script src="./main.js" defer></script>
+	<style>
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			max-width: 600px;
+			margin: 50px auto;
+			padding: 20px;
+			text-align: center;
+		}
+		h1 {
+			color: #333;
+		}
+		button {
+			padding: 15px 30px;
+			font-size: 18px;
+			margin: 10px;
+			cursor: pointer;
+			border: none;
+			border-radius: 5px;
+			transition: background 0.3s;
+		}
+		#btnStart {
+			background-color: #4CAF50;
+			color: white;
+		}
+		#btnStart:hover {
+			background-color: #45a049;
+		}
+		#btnStop {
+			background-color: #f44336;
+			color: white;
+		}
+		#btnStop:hover {
+			background-color: #da190b;
+		}
+		#btnStop:disabled, #btnStart:disabled {
+			background-color: #cccccc;
+			cursor: not-allowed;
+		}
+		.controls {
+			margin: 20px 0;
+		}
+		.control-group {
+			margin: 15px 0;
+		}
+		label {
+			display: inline-block;
+			width: 100px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		input[type="range"] {
+			width: 200px;
+		}
+		#status {
+			margin-top: 20px;
+			padding: 10px;
+			border-radius: 5px;
+			background-color: #f0f0f0;
+		}
+		#status.recording {
+			background-color: #ffebee;
+			color: #c62828;
+		}
+		#status.playing {
+			background-color: #e8f5e9;
+			color: #2e7d32;
+		}
+	</style>
+</head>
+<body>
+	<h1>Voice Changer</h1>
+	<p>Record your voice and play it back with different pitch!</p>
+	
+	<div class="controls">
+		<button id="btnStart">Start Recording</button>
+		<button id="btnStop" disabled>Stop Recording</button>
+	</div>
+	
+	<div class="control-group">
+		<label for="rate">Pitch:</label>
+		<input type="range" id="rate" min="0.5" max="2.0" step="0.1" value="1.4">
+		<span id="rateValue">1.4</span>
+	</div>
+	
+	<div class="control-group">
+		<label for="volume">Volume:</label>
+		<input type="range" id="volume" min="0" max="1" step="0.1" value="1.0">
+		<span id="volumeValue">1.0</span>
+	</div>
+
+	<div id="status">Ready to record</div>
+
+	<script>
+		document.getElementById('rate').addEventListener('input', function(e) {
+			document.getElementById('rateValue').textContent = e.target.value;
+		});
+		document.getElementById('volume').addEventListener('input', function(e) {
+			document.getElementById('volumeValue').textContent = e.target.value;
+		});
+	</script>
+</body>
+</html>
