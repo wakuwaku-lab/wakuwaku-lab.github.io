@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmx Task Manager Demo</title>
+    <script src="https://unpkg.com/htmx.org@2"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+        }
+        .task-list {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .detail-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: fit-content;
+            min-height: 300px;
+        }
+        .search-box {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .htmx-indicator {
+            opacity: 0;
+            transition: opacity 300ms;
+        }
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+        }
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #f9f9f9;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #fafafa;
+        }
+        tr.htmx-swapping {
+            opacity: 0;
+            transition: opacity 500ms ease-out;
+        }
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-edit {
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+        tr:hover .btn-edit {
+            opacity: 1;
+        }
+        .task-row {
+            cursor: pointer;
+        }
+        .task-row:hover {
+            background: #eef4ff;
+        }
+        .task-row.selected {
+            background: #e0efff;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .status-未着手 {
+            background: #e9ecef;
+            color: #495057;
+        }
+        .status-対応中 {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-完了 {
+            background: #d4edda;
+            color: #155724;
+        }
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-content {
+            line-height: 1.8;
+        }
+        .detail-content p {
+            margin: 10px 0;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #666;
+            width: 80px;
+            display: inline-block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .inline-edit-form {
+            display: flex;
+            gap: 5px;
+        }
+        .inline-edit-form input {
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .description-preview {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>htmx Task Manager</h1>
+    <p>HTML属性だけで動的UIを実現 - JavaScriptはほとんど書いていません</p>
+
+    <div class="container">
+        <div class="task-list">
+            <div class="search-box">
+                <input
+                    type="search"
+                    name="q"
+                    placeholder="タスクを検索..."
+                    hx-get="/tasks/search"
+                    hx-trigger="input changed delay:300ms"
+                    hx-target="#task-table-body"
+                    hx-indicator="#search-indicator"
+                >
+                <span id="search-indicator" class="htmx-indicator">検索中...</span>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>タスク</th>
+                        <th>ステータス</th>
+                        <th>担当者</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="task-table-body">
+                    <tr id="task-row-1" class="task-row">
+                        <td>
+                            <span>📋</span>
+                            <span class="task-title">ECサイトの商品ページ改善</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/1/title/edit"
+                                hx-target="#cell-title-1"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-対応中">対応中</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/1/status/edit"
+                                hx-target="#cell-status-1"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>田中太郎</td>
+                        <td>
+                            <button
+                                class="btn btn-primary"
+                                hx-get="/tasks/1/preview"
+                                hx-target="#detail-panel"
+                                hx-swap="innerHTML"
+                            >プレビュー</button>
+                            <button
+                                class="btn btn-danger"
+                                hx-delete="/tasks/1"
+                                hx-target="#task-row-1"
+                                hx-swap="outerHTML swap:500ms"
+                                hx-confirm="このタスクを削除しますか？"
+                            >削除</button>
+                        </td>
+                    </tr>
+                    <tr id="task-row-2" class="task-row">
+                        <td>
+                            <span>🎨</span>
+                            <span class="task-title">ランディングページデザイン</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/2/title/edit"
+                                hx-target="#cell-title-2"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-未着手">未着手</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/2/status/edit"
+                                hx-target="#cell-status-2"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>佐藤花子</td>
+                        <td>
+                            <button
+                                class="btn btn-primary"
+                                hx-get="/tasks/2/preview"
+                                hx-target="#detail-panel"
+                                hx-swap="innerHTML"
+                            >プレビュー</button>
+                            <button
+                                class="btn btn-danger"
+                                hx-delete="/tasks/2"
+                                hx-target="#task-row-2"
+                                hx-swap="outerHTML swap:500ms"
+                                hx-confirm="このタスクを削除しますか？"
+                            >削除</button>
+                        </td>
+                    </tr>
+                    <tr id="task-row-3" class="task-row">
+                        <td>
+                            <span>📱</span>
+                            <span class="task-title">アプリの新機能開発</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/3/title/edit"
+                                hx-target="#cell-title-3"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-完了">完了</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/3/status/edit"
+                                hx-target="#cell-status-3"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>鈴木一郎</td>
+                        <td>
+                            <button
+                                class="btn btn-primary"
+                                hx-get="/tasks/3/preview"
+                                hx-target="#detail-panel"
+                                hx-swap="innerHTML"
+                            >プレビュー</button>
+                            <button
+                                class="btn btn-danger"
+                                hx-delete="/tasks/3"
+                                hx-target="#task-row-3"
+                                hx-swap="outerHTML swap:500ms"
+                                hx-confirm="このタスクを削除しますか？"
+                            >削除</button>
+                        </td>
+                    </tr>
+                    <tr id="task-row-4" class="task-row">
+                        <td>
+                            <span>📊</span>
+                            <span class="task-title">アクセス解析レポート作成</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/4/title/edit"
+                                hx-target="#cell-title-4"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-対応中">対応中</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/4/status/edit"
+                                hx-target="#cell-status-4"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>田中太郎</td>
+                        <td>
+                            <button
+                                class="btn btn-primary"
+                                hx-get="/tasks/4/preview"
+                                hx-target="#detail-panel"
+                                hx-swap="innerHTML"
+                            >プレビュー</button>
+                            <button
+                                class="btn btn-danger"
+                                hx-delete="/tasks/4"
+                                hx-target="#task-row-4"
+                                hx-swap="outerHTML swap:500ms"
+                                hx-confirm="このタスクを削除しますか？"
+                            >削除</button>
+                        </td>
+                    </tr>
+                    <tr id="task-row-5" class="task-row">
+                        <td>
+                            <span>✉️</span>
+                            <span class="task-title">メールマガジン配信</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/5/title/edit"
+                                hx-target="#cell-title-5"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-未着手">未着手</span>
+                            <button
+                                class="btn-edit"
+                                hx-get="/tasks/5/status/edit"
+                                hx-target="#cell-status-5"
+                                hx-swap="outerHTML"
+                            >✏️</button>
+                        </td>
+                        <td>佐藤花子</td>
+                        <td>
+                            <button
+                                class="btn btn-primary"
+                                hx-get="/tasks/5/preview"
+                                hx-target="#detail-panel"
+                                hx-swap="innerHTML"
+                            >プレビュー</button>
+                            <button
+                                class="btn btn-danger"
+                                hx-delete="/tasks/5"
+                                hx-target="#task-row-5"
+                                hx-swap="outerHTML swap:500ms"
+                                hx-confirm="このタスクを削除しますか？"
+                            >削除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <aside id="detail-panel" class="detail-panel">
+            <div class="empty-state">
+                <p>タスクを選択してプレビュー</p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const tasks = {
+            1: {
+                id: 1,
+                title: "ECサイトの商品ページ改善",
+                emoji: "📋",
+                status: "対応中",
+                assignee: "田中太郎",
+                description: "商品ページのCV率を向上させるために、レイアウト改善とストーリーテリングの強化を行う。"
+            },
+            2: {
+                id: 2,
+                title: "ランディングページデザイン",
+                emoji: "🎨",
+                status: "未着手",
+                assignee: "佐藤花子",
+                description: "新商品の発売に伴うLPデザイン。ターゲットは20-30代女性。"
+            },
+            3: {
+                id: 3,
+                title: "アプリの新機能開発",
+                emoji: "📱",
+                status: "完了",
+                assignee: "鈴木一郎",
+                description: "プッシュ通知機能の追加とダッシュボードのリニューアル。"
+            },
+            4: {
+                id: 4,
+                title: "アクセス解析レポート作成",
+                emoji: "📊",
+                status: "対応中",
+                assignee: "田中太郎",
+                description: "今月のアクセス解析レポート。先月比150%の成長率。"
+            },
+            5: {
+                id: 5,
+                title: "メールマガジン配信",
+                emoji: "✉️",
+                status: "未着手",
+                assignee: "佐藤花子",
+                description: "-springキャンペーンの告知メール。"
+            }
+        };
+
+        let taskList = Object.values(tasks);
+
+        function getStatusClass(status) {
+            return 'status-' + status;
+        }
+
+        htmx.on('htmx:afterSwap', function(evt) {
+            const target = evt.detail.target;
+            if (target.id && target.id.startsWith('task-row-')) {
+                const row = document.querySelector('.task-row.selected');
+                if (row) row.classList.remove('selected');
+                target.classList.add('selected');
+            }
+        });
+
+        document.body.addEventListener('htmx:get', function(evt) {
+            const url = evt.detail.requestConfig.path;
+            
+            if (url.includes('/tasks/search')) {
+                evt.preventDefault();
+                const query = new URLSearchParams(url.split('?')[1] || '').get('q') || '';
+                const filtered = query 
+                    ? taskList.filter(t => t.title.includes(query))
+                    : Object.values(tasks);
+                
+                if (filtered.length === 0) {
+                    evt.detail.target.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:20px;">タスクが見つかりません</td></tr>';
+                } else {
+                    evt.detail.target.innerHTML = filtered.map(task => renderTaskRow(task)).join('');
+                }
+            }
+
+            if (url.includes('/preview')) {
+                const id = url.match(/\/tasks\/(\d+)\/preview/)[1];
+                const task = tasks[id];
+                if (task) {
+                    evt.preventDefault();
+                    evt.detail.target.innerHTML = renderDetailPanel(task);
+                }
+            }
+
+            if (url.includes('/title/edit')) {
+                const id = url.match(/\/tasks\/(\d+)\/title\/edit/)[1];
+                const task = tasks[id];
+                if (task) {
+                    evt.preventDefault();
+                    evt.detail.target.innerHTML = renderTitleEditForm(task);
+                }
+            }
+
+            if (url.includes('/status/edit')) {
+                const id = url.match(/\/tasks\/(\d+)\/status\/edit/)[1];
+                const task = tasks[id];
+                if (task) {
+                    evt.preventDefault();
+                    evt.detail.target.innerHTML = renderStatusEditForm(task);
+                }
+            }
+
+            if (url.match(/\/tasks\/(\d+)$/) && !url.includes('delete')) {
+                const id = url.match(/\/tasks\/(\d+)$/)[1];
+                const task = tasks[id];
+                if (task) {
+                    evt.preventDefault();
+                    evt.detail.target.innerHTML = renderTaskCell(task);
+                }
+            }
+        });
+
+        document.body.addEventListener('htmx:confirm', function(evt) {
+        });
+
+        document.body.addEventListener('htmx:afterRequest', function(evt) {
+            const xhr = evt.detail.xhr;
+            
+            if (xhr.method === 'DELETE' && xhr.status === 200) {
+            }
+
+            if (xhr.method === 'PATCH' || xhr.method === 'PUT') {
+                const url = xhr.path;
+                if (url && url.includes('/title')) {
+                    const id = url.match(/\/tasks\/(\d+)\/title/)[1];
+                    const formData = new FormData(evt.detail.target);
+                    const newTitle = formData.get('title');
+                    if (tasks[id]) {
+                        tasks[id].title = newTitle;
+                    }
+                }
+                if (url && url.includes('/status')) {
+                    const id = url.match(/\/tasks\/(\d+)\/status/)[1];
+                    const formData = new FormData(evt.detail.target);
+                    const newStatus = formData.get('status');
+                    if (tasks[id]) {
+                        tasks[id].status = newStatus;
+                    }
+                }
+            }
+        });
+
+        function renderTaskRow(task) {
+            return `
+                <tr id="task-row-${task.id}" class="task-row">
+                    <td id="cell-title-${task.id}">
+                        <span>${task.emoji}</span>
+                        <span class="task-title">${task.title}</span>
+                        <button
+                            class="btn-edit"
+                            hx-get="/tasks/${task.id}/title/edit"
+                            hx-target="#cell-title-${task.id}"
+                            hx-swap="outerHTML"
+                        >✏️</button>
+                    </td>
+                    <td id="cell-status-${task.id}">
+                        <span class="status-badge ${getStatusClass(task.status)}">${task.status}</span>
+                        <button
+                            class="btn-edit"
+                            hx-get="/tasks/${task.id}/status/edit"
+                            hx-target="#cell-status-${task.id}"
+                            hx-swap="outerHTML"
+                        >✏️</button>
+                    </td>
+                    <td>${task.assignee}</td>
+                    <td>
+                        <button
+                            class="btn btn-primary"
+                            hx-get="/tasks/${task.id}/preview"
+                            hx-target="#detail-panel"
+                            hx-swap="innerHTML"
+                        >プレビュー</button>
+                        <button
+                            class="btn btn-danger"
+                            hx-delete="/tasks/${task.id}"
+                            hx-target="#task-row-${task.id}"
+                            hx-swap="outerHTML swap:500ms"
+                            hx-confirm="このタスクを削除しますか？"
+                        >削除</button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderDetailPanel(task) {
+            return `
+                <div class="detail-header">
+                    <h2>タスク詳細</h2>
+                    <button
+                        class="btn btn-primary"
+                        hx-get="/tasks/${task.id}/edit/panel"
+                        hx-target="#detail-panel"
+                        hx-swap="innerHTML"
+                    >編集</button>
+                </div>
+                <div class="detail-content">
+                    <p><span class="detail-label">タイトル:</span> ${task.emoji} ${task.title}</p>
+                    <p><span class="detail-label">ステータス:</span> <span class="status-badge ${getStatusClass(task.status)}">${task.status}</span></p>
+                    <p><span class="detail-label">担当者:</span> ${task.assignee}</p>
+                    <p><span class="detail-label">説明:</span></p>
+                    <p>${task.description}</p>
+                </div>
+            `;
+        }
+
+        function renderTitleEditForm(task) {
+            return `
+                <form
+                    class="inline-edit-form"
+                    hx-patch="/tasks/${task.id}/title"
+                    hx-target="#cell-title-${task.id}"
+                    hx-swap="outerHTML"
+                >
+                    <input type="text" name="title" value="${task.title}" autofocus>
+                    <button type="submit" class="btn btn-primary">✓</button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        hx-get="/tasks/${task.id}/title"
+                        hx-target="#cell-title-${task.id}"
+                        hx-swap="outerHTML"
+                    >✕</button>
+                </form>
+            `;
+        }
+
+        function renderStatusEditForm(task) {
+            return `
+                <form
+                    class="inline-edit-form"
+                    hx-patch="/tasks/${task.id}/status"
+                    hx-target="#cell-status-${task.id}"
+                    hx-swap="outerHTML"
+                >
+                    <select name="status">
+                        <option value="未着手" ${task.status === '未着手' ? 'selected' : ''}>未着手</option>
+                        <option value="対応中" ${task.status === '対応中' ? 'selected' : ''}>対応中</option>
+                        <option value="完了" ${task.status === '完了' ? 'selected' : ''}>完了</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">✓</button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        hx-get="/tasks/${task.id}/status"
+                        hx-target="#cell-status-${task.id}"
+                        hx-swap="outerHTML"
+                    >✕</button>
+                </form>
+            `;
+        }
+
+        function renderTaskCell(task) {
+            return `
+                <span>${task.emoji}</span>
+                <span class="task-title">${task.title}</span>
+                <button
+                    class="btn-edit"
+                    hx-get="/tasks/${task.id}/title/edit"
+                    hx-target="#cell-title-${task.id}"
+                    hx-swap="outerHTML"
+                >✏️</button>
+            `;
+        }
+    </script>
+</body>
+</html>
