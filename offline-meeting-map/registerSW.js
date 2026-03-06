@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/offline-meeting-map/sw.js', { scope: '/offline-meeting-map/' })})}
