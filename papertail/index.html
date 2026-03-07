@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papertail Presentation</title>
+
+    <!-- Fonts: JetBrains Mono for a terminal feel -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=jet-brains-mono@400,700&display=swap">
+
+    <style>
+        /* ===========================================
+           TERMINAL GREEN PRESET
+           =========================================== */
+        :root {
+            /* Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --text-primary: #00ff41; /* Classic Matrix Green */
+            --text-secondary: #008f11;
+            --accent: #d4ff00; /* Neon highlight */
+            --accent-glow: rgba(0, 255, 65, 0.2);
+
+            /* Typography - CRITICAL: Viewport Fitting */
+            --font-display: 'JetBrains Mono', monospace;
+            --font-body: 'JetBrains Mono', monospace;
+            --title-size: clamp(2rem, 8vw, 5rem);
+            --h2-size: clamp(1.5rem, 5vw, 3rem);
+            --body-size: clamp(0.875rem, 1.5vw, 1.25rem);
+
+            /* Spacing */
+            --slide-padding: clamp(1.5rem, 5vw, 4rem);
+            --content-gap: clamp(1rem, 3vh, 2.5rem);
+
+            /* Animation */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+        }
+
+        /* ===========================================
+           VIEWPORT FITTING: MANDATORY BASE STYLES
+           =========================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: var(--slide-padding);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Typography */
+        h1 { font-size: var(--title-size); margin-bottom: 1rem; color: var(--accent); text-transform: uppercase; letter-spacing: -0.02em; }
+        h2 { font-size: var(--h2-size); margin-bottom: 1.5rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        p { font-size: var(--body-size); line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem; }
+        ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        li { font-size: var(--body-size); position: relative; padding-left: 1.5rem; }
+        li::before { content: ">"; position: absolute; left: 0; color: var(--accent); }
+
+        code {
+            background: rgba(212, 255, 0, 0.1);
+            color: var(--accent);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--text-secondary);
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        /* ===========================================
+           ANIMATIONS
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .reveal:nth-child(3) { transition-delay: 0.2s; }
+        .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: 1px solid var(--text-primary);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--text-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--text-primary);
+            vertical-align: middle;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Responsive */
+        @media (max-height: 600px) {
+            :root { --content-gap: 1rem; --slide-padding: 1.5rem; }
+            h2 { margin-bottom: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Slide 1: Title -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1 class="reveal">Papertail<span class="cursor"></span></h1>
+            <p class="reveal">A high-performance CLI tool for downloading and processing logs from the Papertrail API.</p>
+            <p class="reveal" style="color: var(--accent);">By wakuwaku-lab / exia.huang</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: Why Papertail? -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">The Problem & Solution</h2>
+            <ul class="reveal">
+                <li>Retrieving Papertrail logs can be slow and manual.</li>
+                <li>Papertail automates log fetching via the API.</li>
+                <li>Built with Go for maximum speed and portability.</li>
+                <li>Supports multiple output formats: TSV and SQLite.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: Installation -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">Installation</h2>
+            <div class="code-block reveal">
+                <code>go install github.com/wakuwaku-lab/papertail@latest</code>
+            </div>
+            <p class="reveal">Or build from source:</p>
+            <div class="code-block reveal">
+                <code>git clone ... && go build -o papertail .</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Configuration -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">Configuration</h2>
+            <ul class="reveal">
+                <li>Requires <code>PAPERTRAIL_API_TOKEN</code>.</li>
+                <li>Method 1: Environment variables.</li>
+                <li>Method 2: <code>.env</code> file in project root.</li>
+                <li>Seamlessly integrates into CI/CD and local environments.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 5: Usage - Hours -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">Mode 1: Time Window</h2>
+            <p class="reveal">Fetch logs from a specific hour range:</p>
+            <div class="code-block reveal">
+                <code># Last 24 hours<br>papertail logs --hours 24 --tsv out.tsv</code>
+            </div>
+            <div class="code-block reveal">
+                <code># Hour range (1-6 hours ago)<br>papertail logs --hours 1-6 --tsv out.tsv</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Usage - Dates -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">Mode 2 & 3: Dates</h2>
+            <p class="reveal">Specific Date:</p>
+            <div class="code-block reveal">
+                <code>papertail logs --date 2024-03-01 --tsv out.tsv</code>
+            </div>
+            <p class="reveal">Date Range:</p>
+            <div class="code-block reveal">
+                <code>papertail logs --start 2024-03-01 --end 2024-03-07</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Parameters -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">Key Parameters</h2>
+            <ul class="reveal">
+                <li><code>--hours (-n)</code>: Time window in hours.</li>
+                <li><code>--date (-D)</code>: Specific YYYY-MM-DD.</li>
+                <li><code>--tsv (-t)</code>: Path for TSV output.</li>
+                <li><code>--db (-d)</code>: SQLite database destination.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 8: SQLite Integration -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2 class="reveal">SQLite Analysis</h2>
+            <ul class="reveal">
+                <li>Directly import logs into an SQLite database.</li>
+                <li>Enables standard SQL queries for complex analysis.</li>
+                <li>Command: <code>papertail logs --db logs.db --tsv logs.tsv</code>.</li>
+                <li>Perfect for persistent storage and reporting.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 9: Closing -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1 class="reveal" style="font-size: 3rem;">Ready to sync?</h1>
+            <p class="reveal">GitHub: wakuwaku-lab/papertail</p>
+            <p class="reveal" style="color: var(--accent);">Thank you!</p>
+        </div>
+    </section>
+
+    <script>
+        class Presentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.dotsContainer = document.getElementById('navDots');
+                this.currentSlide = 0;
+                this.isScrolling = false;
+
+                this.init();
+            }
+
+            init() {
+                // Create dots
+                this.slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot' + (i === 0 ? ' active' : '');
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.dotsContainer.appendChild(dot);
+                });
+
+                this.dots = document.querySelectorAll('.dot');
+
+                // Observer for animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            this.updateActiveDot(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+
+                // Keyboard Nav
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown' || e.key === ' ') this.nextSlide();
+                    if (e.key === 'ArrowUp') this.prevSlide();
+                });
+            }
+
+            updateActiveDot(activeSlide) {
+                const index = Array.from(this.slides).indexOf(activeSlide);
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                this.currentSlide = index;
+            }
+
+            goToSlide(index) {
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.slides.length - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+        }
+
+        new Presentation();
+    </script>
+</body>
+</html>
