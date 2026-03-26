@@ -1,0 +1,116 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-frontend-cache-demo","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-frontend-cache-demo","d"],{"children":["__PAGE__?{\"id\":\"repo-frontend-cache-demo\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-frontend-cache-demo","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T6cf,
+# フロントエンドキャッシュデモ
+
+Webアプリケーションにおける6つのキャッシュレベルをインタラクティブに学ぶデモアプリケーションです。
+
+## キャッシュレベル
+
+1. **コンポーネントキャッシュ** - React.memo、useMemo、useCallbackによるUI再レンダリングの最適化
+2. **ランタイムメモリキャッシュ** - APIレスポンスや計算結果をRAMに一時保存
+3. **永続キャッシュ** - localStorage/IndexedDBによるデータ永続化
+4. **Service Workerキャッシュ** - プロキシーレイヤーによるネットワークリクエスト制御
+5. **HTTPキャッシュ** - Cache-Control、ETagによるブラウザ組み込みキャッシュ
+6. **CDNエッジキャッシュ** - 世界に分布するCDNサーバーによるキャッシュ
+
+## 実行方法
+
+### 簡易サーバーを使う
+
+```bash
+cd frontend-cache-demo
+python3 -m http.server 8080
+```
+
+ブラウザで http://localhost:8080 にアクセスしてください。
+
+### Dockerを使う
+
+```bash
+cd frontend-cache-demo
+docker-compose up
+```
+
+ブラウザで http://localhost:8080 にアクセスしてください。
+
+## 機能
+
+- 各キャッシュレベルのインタラクティブなテスト
+- 3言語対応（日本語、英语、中文）
+- デフォルト言語：日本語
+- キャッシュ動作の可視化
+
+## 技術スタック
+
+- Vanilla JavaScript
+- HTML5/CSS3
+- Service Worker API
+- localStorage API
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Project:** [frontend-cache-demo slide](https://wakuwaku-lab.github.io/frontend-cache-demo)
+**App:** [frontend-cache-demo app.html](https://wakuwaku-lab.github.io/frontend-cache-demo/app.html)
+
+9:T563,
+# Frontend Cache Demo
+
+An interactive demo application to learn about 6 levels of caching in web applications.
+
+## Cache Levels
+
+1. **Component Cache** - UI re-render optimization using React.memo, useMemo, useCallback
+2. **Runtime Memory Cache** - Temporarily store API responses and computed results in RAM
+3. **Persistent Cache** - Data persistence using localStorage/IndexedDB
+4. **Service Worker Cache** - Network request control via proxy layer
+5. **HTTP Cache** - Browser built-in caching via Cache-Control, ETag
+6. **CDN Edge Cache** - Cache distributed across worldwide CDN servers
+
+## How to Run
+
+### Using Simple Server
+
+```bash
+cd frontend-cache-demo
+python3 -m http.server 8080
+```
+
+Open http://localhost:8080 in your browser.
+
+### Using Docker
+
+```bash
+cd frontend-cache-demo
+docker-compose up
+```
+
+Open http://localhost:8080 in your browser.
+
+## Features
+
+- Interactive testing of each cache level
+- Support for 3 languages (Japanese, English, Chinese)
+- Default language: Japanese
+- Visual cache operation display
+
+## Tech Stack
+
+- Vanilla JavaScript
+- HTML5/CSS3
+- Service Worker API
+- localStorage API
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Project:** [frontend-cache-demo slide](https://wakuwaku-lab.github.io/frontend-cache-demo)
+**App:** [frontend-cache-demo app.html](https://wakuwaku-lab.github.io/frontend-cache-demo/app.html)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-frontend-cache-demo","repo":"frontend-cache-demo","lang":"ja","title":"フロントエンドキャッシュデモ","excerpt":"Webアプリケーションにおける6つのキャッシュレベルをインタラクティブに学ぶデモアプリケーションです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/frontend-cache-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"Unknown","tags":["Unknown"],"homepage":"https://wakuwaku-lab.github.io/frontend-cache-demo/","html_url":"https://github.com/wakuwaku-lab/frontend-cache-demo","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-frontend-cache-demo","repo":"frontend-cache-demo","lang":"zh","title":"前端缓存演示","excerpt":"一个交互式演示应用程序，用于学习Web应用程序中的6个缓存级别。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/frontend-cache-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"Unknown","tags":["Unknown"],"homepage":"https://wakuwaku-lab.github.io/frontend-cache-demo/","html_url":"https://github.com/wakuwaku-lab/frontend-cache-demo","slide_url":""},"content":"\n# 前端缓存演示\n\n一个交互式演示应用程序，用于学习Web应用程序中的6个缓存级别。\n\n## 缓存级别\n\n1. **组件缓存** - 使用React.memo、useMemo、useCallback优化UI重新渲染\n2. **运行时内存缓存** - 在RAM中临时存储API响应和计算结果\n3. **持久缓存** - 使用localStorage/IndexedDB进行数据持久化\n4. **Service Worker缓存** - 通过代理层控制网络请求\n5. **HTTP缓存** - 通过Cache-Control、ETag实现浏览器内置缓存\n6. **CDN边缘缓存** - 分布在全球CDN服务器上的缓存\n\n## 运行方法\n\n### 使用简单服务器\n\n```bash\ncd frontend-cache-demo\npython3 -m http.server 8080\n```\n\n在浏览器中打开 http://localhost:8080。\n\n### 使用Docker\n\n```bash\ncd frontend-cache-demo\ndocker-compose up\n```\n\n在浏览器中打开 http://localhost:8080。\n\n## 功能\n\n- 交互式测试每个缓存级别\n- 支持3种语言（日语、英语、中文）\n- 默认语言：日语\n- 缓存操作可视化显示\n\n## 技术栈\n\n- Vanilla JavaScript\n- HTML5/CSS3\n- Service Worker API\n- localStorage API\n\n---\n\n**Author:** [exia.huang](https://github.com/exiahuang)  \n**Project:** [frontend-cache-demo slide](https://wakuwaku-lab.github.io/frontend-cache-demo)\n**App:** [frontend-cache-demo app.html](https://wakuwaku-lab.github.io/frontend-cache-demo/app.html)\n\n"},"en":{"post":{"id":"repo-frontend-cache-demo","repo":"frontend-cache-demo","lang":"en","title":"Frontend Cache Demo","excerpt":"An interactive demo application to learn about 6 levels of caching in web applications.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/frontend-cache-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"Unknown","tags":["Unknown"],"homepage":"https://wakuwaku-lab.github.io/frontend-cache-demo/","html_url":"https://github.com/wakuwaku-lab/frontend-cache-demo","slide_url":""},"content":"$9"}},"relatedPosts":[],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

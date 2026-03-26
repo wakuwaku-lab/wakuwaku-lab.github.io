@@ -1,0 +1,458 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-mysql-tax-return","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-mysql-tax-return","d"],{"children":["__PAGE__?{\"id\":\"repo-mysql-tax-return\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-mysql-tax-return","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:Tbe5,
+# MySQLで確定申告
+
+このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。
+
+## 概要
+
+ MySQLを使って青色申告所需的以下の帳簿を作成します：
+
+- 仕訳帳
+- 総勘定元帳
+- 試算表
+- 精算表
+- 損益計算書
+- 貸借対照表
+
+## システム構成
+
+```mermaid
+flowchart LR
+    A[仕訳帳.csv] --> B[MySQL]
+    C[勘定科目マスタ.csv] --> B
+    B --> D[Views]
+    D --> E[各種帳簿出力]
+    
+    subgraph DB["データベース"]
+    B
+    D
+    end
+    
+    subgraph Views["ビュー"]
+    D1[総勘定元帳]
+    D2[試算表]
+    D3[精算表]
+    D4[損益計算書]
+    D5[貸借対照表]
+    end
+```
+
+## 複式簿記のフロー
+
+```mermaid
+flowchart TD
+    A[仕訳帳] -->|転記| B[総勘定元帳]
+    B -->|集計| C[試算表]
+    C -->|決算整理| D[精算表]
+    D --> E[損益計算書]
+    D --> F[貸借対照表]
+```
+
+## 必要なもの
+
+- Docker
+- Docker Compose
+
+## 始め方
+
+1. Docker ComposeでMySQLを起動：
+
+```bash
+cd mysql-tax-return
+docker-compose up -d
+```
+
+2. データのインポートが完了するまで待つ（自動的に行われます）
+
+3. MySQLに接続して確認：
+
+```bash
+docker exec -it mysql-tax-return mysql -u root -prootpassword --default-character-set=utf8mb4 tax_accounting
+```
+
+## 帳簿の確認
+
+### 試算表
+
+```sql
+SELECT * FROM 試算表_印刷用;
+```
+
+### 損益計算書
+
+```sql
+SELECT * FROM 損益計算書;
+```
+
+### 貸借対照表
+
+```sql
+SELECT * FROM 貸借対照表;
+```
+
+### 精算表
+
+```sql
+SELECT * FROM 精算表_印刷用;
+```
+
+### 総勘定元帳（勘定科目別）
+
+```sql
+-- 売上の総勘定元帳
+SELECT * FROM 総勘定元帳_売上_印刷用;
+
+-- 現金の総勘定元帳
+SELECT * FROM 総勘定元帳_現金_印刷用;
+```
+
+## テーブル構造
+
+### 仕訳帳
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 日付 | DATE | 取引日 |
+| 借方勘定科目 | VARCHAR(8) | 借方勘定科目 |
+| 借方金額 | DECIMAL(10,0) | 借方金額 |
+| 貸方勘定科目 | VARCHAR(8) | 貸方勘定科目 |
+| 貸方金額 | DECIMAL(10,0) | 貸方金額 |
+| 摘要 | VARCHAR(255) | 摘要 |
+| 備考 | VARCHAR(8) | 備考（決算整理フラグ） |
+
+### 勘定科目マスタ
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 科目名 | VARCHAR(8) | 勘定科目名 |
+| 貸借区分 | VARCHAR(2) | 借方/貸方 |
+| 精算表 | VARCHAR(5) | 貸借対照表/損益計算書 |
+
+## 青色申告特別控除
+
+複式簿記により記帳することで、 最大65万円の青色申告特別控除を受けることができます。
+
+## 参考
+
+- [MySQLで確定申告 - KRAY Inc.](https://kray.jp/blog/file-a-tax-return-with-mysql/)
+- [国税庁HP 青色申告制度](https://www.nta.go.jp/taxanswer/shotoku/2070.htm)
+
+## ライセンス
+
+MIT License
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:Tbe5,
+# MySQLで確定申告
+
+このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。
+
+## 概要
+
+ MySQLを使って青色申告所需的以下の帳簿を作成します：
+
+- 仕訳帳
+- 総勘定元帳
+- 試算表
+- 精算表
+- 損益計算書
+- 貸借対照表
+
+## システム構成
+
+```mermaid
+flowchart LR
+    A[仕訳帳.csv] --> B[MySQL]
+    C[勘定科目マスタ.csv] --> B
+    B --> D[Views]
+    D --> E[各種帳簿出力]
+    
+    subgraph DB["データベース"]
+    B
+    D
+    end
+    
+    subgraph Views["ビュー"]
+    D1[総勘定元帳]
+    D2[試算表]
+    D3[精算表]
+    D4[損益計算書]
+    D5[貸借対照表]
+    end
+```
+
+## 複式簿記のフロー
+
+```mermaid
+flowchart TD
+    A[仕訳帳] -->|転記| B[総勘定元帳]
+    B -->|集計| C[試算表]
+    C -->|決算整理| D[精算表]
+    D --> E[損益計算書]
+    D --> F[貸借対照表]
+```
+
+## 必要なもの
+
+- Docker
+- Docker Compose
+
+## 始め方
+
+1. Docker ComposeでMySQLを起動：
+
+```bash
+cd mysql-tax-return
+docker-compose up -d
+```
+
+2. データのインポートが完了するまで待つ（自動的に行われます）
+
+3. MySQLに接続して確認：
+
+```bash
+docker exec -it mysql-tax-return mysql -u root -prootpassword --default-character-set=utf8mb4 tax_accounting
+```
+
+## 帳簿の確認
+
+### 試算表
+
+```sql
+SELECT * FROM 試算表_印刷用;
+```
+
+### 損益計算書
+
+```sql
+SELECT * FROM 損益計算書;
+```
+
+### 貸借対照表
+
+```sql
+SELECT * FROM 貸借対照表;
+```
+
+### 精算表
+
+```sql
+SELECT * FROM 精算表_印刷用;
+```
+
+### 総勘定元帳（勘定科目別）
+
+```sql
+-- 売上の総勘定元帳
+SELECT * FROM 総勘定元帳_売上_印刷用;
+
+-- 現金の総勘定元帳
+SELECT * FROM 総勘定元帳_現金_印刷用;
+```
+
+## テーブル構造
+
+### 仕訳帳
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 日付 | DATE | 取引日 |
+| 借方勘定科目 | VARCHAR(8) | 借方勘定科目 |
+| 借方金額 | DECIMAL(10,0) | 借方金額 |
+| 貸方勘定科目 | VARCHAR(8) | 貸方勘定科目 |
+| 貸方金額 | DECIMAL(10,0) | 貸方金額 |
+| 摘要 | VARCHAR(255) | 摘要 |
+| 備考 | VARCHAR(8) | 備考（決算整理フラグ） |
+
+### 勘定科目マスタ
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 科目名 | VARCHAR(8) | 勘定科目名 |
+| 貸借区分 | VARCHAR(2) | 借方/貸方 |
+| 精算表 | VARCHAR(5) | 貸借対照表/損益計算書 |
+
+## 青色申告特別控除
+
+複式簿記により記帳することで、 最大65万円の青色申告特別控除を受けることができます。
+
+## 参考
+
+- [MySQLで確定申告 - KRAY Inc.](https://kray.jp/blog/file-a-tax-return-with-mysql/)
+- [国税庁HP 青色申告制度](https://www.nta.go.jp/taxanswer/shotoku/2070.htm)
+
+## ライセンス
+
+MIT License
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:Tbe5,
+# MySQLで確定申告
+
+このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。
+
+## 概要
+
+ MySQLを使って青色申告所需的以下の帳簿を作成します：
+
+- 仕訳帳
+- 総勘定元帳
+- 試算表
+- 精算表
+- 損益計算書
+- 貸借対照表
+
+## システム構成
+
+```mermaid
+flowchart LR
+    A[仕訳帳.csv] --> B[MySQL]
+    C[勘定科目マスタ.csv] --> B
+    B --> D[Views]
+    D --> E[各種帳簿出力]
+    
+    subgraph DB["データベース"]
+    B
+    D
+    end
+    
+    subgraph Views["ビュー"]
+    D1[総勘定元帳]
+    D2[試算表]
+    D3[精算表]
+    D4[損益計算書]
+    D5[貸借対照表]
+    end
+```
+
+## 複式簿記のフロー
+
+```mermaid
+flowchart TD
+    A[仕訳帳] -->|転記| B[総勘定元帳]
+    B -->|集計| C[試算表]
+    C -->|決算整理| D[精算表]
+    D --> E[損益計算書]
+    D --> F[貸借対照表]
+```
+
+## 必要なもの
+
+- Docker
+- Docker Compose
+
+## 始め方
+
+1. Docker ComposeでMySQLを起動：
+
+```bash
+cd mysql-tax-return
+docker-compose up -d
+```
+
+2. データのインポートが完了するまで待つ（自動的に行われます）
+
+3. MySQLに接続して確認：
+
+```bash
+docker exec -it mysql-tax-return mysql -u root -prootpassword --default-character-set=utf8mb4 tax_accounting
+```
+
+## 帳簿の確認
+
+### 試算表
+
+```sql
+SELECT * FROM 試算表_印刷用;
+```
+
+### 損益計算書
+
+```sql
+SELECT * FROM 損益計算書;
+```
+
+### 貸借対照表
+
+```sql
+SELECT * FROM 貸借対照表;
+```
+
+### 精算表
+
+```sql
+SELECT * FROM 精算表_印刷用;
+```
+
+### 総勘定元帳（勘定科目別）
+
+```sql
+-- 売上の総勘定元帳
+SELECT * FROM 総勘定元帳_売上_印刷用;
+
+-- 現金の総勘定元帳
+SELECT * FROM 総勘定元帳_現金_印刷用;
+```
+
+## テーブル構造
+
+### 仕訳帳
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 日付 | DATE | 取引日 |
+| 借方勘定科目 | VARCHAR(8) | 借方勘定科目 |
+| 借方金額 | DECIMAL(10,0) | 借方金額 |
+| 貸方勘定科目 | VARCHAR(8) | 貸方勘定科目 |
+| 貸方金額 | DECIMAL(10,0) | 貸方金額 |
+| 摘要 | VARCHAR(255) | 摘要 |
+| 備考 | VARCHAR(8) | 備考（決算整理フラグ） |
+
+### 勘定科目マスタ
+
+| カラム | 型 | 説明 |
+|--------|-----|------|
+| id | INT | 主キー |
+| 科目名 | VARCHAR(8) | 勘定科目名 |
+| 貸借区分 | VARCHAR(2) | 借方/貸方 |
+| 精算表 | VARCHAR(5) | 貸借対照表/損益計算書 |
+
+## 青色申告特別控除
+
+複式簿記により記帳することで、 最大65万円の青色申告特別控除を受けることができます。
+
+## 参考
+
+- [MySQLで確定申告 - KRAY Inc.](https://kray.jp/blog/file-a-tax-return-with-mysql/)
+- [国税庁HP 青色申告制度](https://www.nta.go.jp/taxanswer/shotoku/2070.htm)
+
+## ライセンス
+
+MIT License
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-mysql-tax-return","repo":"mysql-tax-return","lang":"ja","title":"MySQLで確定申告","excerpt":"このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/mysql-tax-return","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.07","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/mysql-tax-return/","html_url":"https://github.com/wakuwaku-lab/mysql-tax-return","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-mysql-tax-return","repo":"mysql-tax-return","lang":"zh","title":"MySQLで確定申告","excerpt":"このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/mysql-tax-return","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.07","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/mysql-tax-return/","html_url":"https://github.com/wakuwaku-lab/mysql-tax-return","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-mysql-tax-return","repo":"mysql-tax-return","lang":"en","title":"MySQLで確定申告","excerpt":"このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/mysql-tax-return","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.07","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/mysql-tax-return/","html_url":"https://github.com/wakuwaku-lab/mysql-tax-return","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-n8n-workflow-example","repo":"n8n-workflow-example","lang":"ja","title":"n8n-workflow-example","excerpt":"n8n（ワークフロー自動化ツール）の示例プロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/n8n-workflow-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.11","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/n8n-workflow-example/","html_url":"https://github.com/wakuwaku-lab/n8n-workflow-example","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

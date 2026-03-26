@@ -1,0 +1,332 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-n8n-workflow-example","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-n8n-workflow-example","d"],{"children":["__PAGE__?{\"id\":\"repo-n8n-workflow-example\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-n8n-workflow-example","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T959,
+# n8n-workflow-example
+
+n8n（ワークフロー自動化ツール）の示例プロジェクトです。
+
+## 概要
+
+このプロジェクトは、n8nを使ったワークフロー自動化の示例を提供します。
+
+## 必要な環境
+
+- Docker
+- Docker Compose
+
+## クイックスタート
+
+```bash
+cd src
+./setup.sh
+```
+
+または、手動で起動する場合：
+
+```bash
+cd src
+docker-compose up -d
+```
+
+## アクセス
+
+- **URL**: http://localhost:5678
+- **ユーザー名**: admin
+- **パスワード**: admin123
+
+## サンプルワークフロー
+
+### 1. Hello World Workflow
+最も基本的なワークフローです。手動でトリガーし、メッセージを出力します。
+
+**ファイル**: `workflows/hello-world.json`
+
+### 2. Schedule Workflow
+5分ごとに定期実行されるワークフローです。HTTPリクエストを実行し、データを処理します。
+
+**ファイル**: `workflows/schedule-workflow.json`
+
+### 3. Webhook Workflow
+Webhookを受け取り、データを処理してレスポンスを返すワークフローです。
+
+**ファイル**: `workflows/webhook-workflow.json`
+
+## ワークフローのインポート方法
+
+1. n8nの左メニューから「Workflows」をクリック
+2. 「Import from File」をクリック
+3. `workflows/`フォルダ内のJSONファイルを選択
+4. 「Import」をクリック
+
+## ワークフローの実行
+
+1. ワークフローを開く
+2. 「Execute Workflow」をクリック
+3. 結果を確認
+
+## Docker コマンド
+
+```bash
+# 起動
+docker-compose up -d
+
+# 停止
+docker-compose down
+
+# ログ確認
+docker-compose logs -f
+
+# 再起動
+docker-compose restart
+```
+
+## プロジェクト構造
+
+```
+n8n-workflow-example/
+├── src/
+│   ├── docker-compose.yml    # Docker設定
+│   ├── setup.sh              # セットアップスクリプト
+│   └── workflows/            # サンプルワークフロー
+│       ├── hello-world.json
+│       ├── schedule-workflow.json
+│       └── webhook-workflow.json
+└── README.md
+```
+
+## 参考
+
+- [n8n 公式ドキュメント](https://docs.n8n.io/)
+
+## ライセンス
+
+MIT
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang) 
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+**Project:** [n8n-workflow-example](https://wakuwaku-lab.github.io/n8n-workflow-example)
+
+9:T76d,
+# n8n-workflow-example
+
+n8n（工作流自动化工具）的示例项目。
+
+## 概述
+
+此项目提供使用n8n进行工作流自动化的示例。
+
+## 环境要求
+
+- Docker
+- Docker Compose
+
+## 快速开始
+
+```bash
+cd src
+./setup.sh
+```
+
+或手动启动：
+
+```bash
+cd src
+docker-compose up -d
+```
+
+## 访问
+
+- **URL**: http://localhost:5678
+- **用户名**: admin
+- **密码**: admin123
+
+## 示例工作流
+
+### 1. Hello World Workflow
+最基本的工作流。手动触发并输出消息。
+
+**文件**: `workflows/hello-world.json`
+
+### 2. Schedule Workflow
+每5分钟定期执行的工作流。发送HTTP请求并处理数据。
+
+**文件**: `workflows/schedule-workflow.json`
+
+### 3. Webhook Workflow
+接收Webhook、处理数据并返回响应的工作流。
+
+**文件**: `workflows/webhook-workflow.json`
+
+## 导入工作流的方法
+
+1. 点击n8n左侧菜单的「Workflows」
+2. 点击「Import from File」
+3. 选择`workflows/`文件夹中的JSON文件
+4. 点击「Import」
+
+## 执行工作流
+
+1. 打开工作流
+2. 点击「Execute Workflow」
+3. 查看结果
+
+## Docker 命令
+
+```bash
+# 启动
+docker-compose up -d
+
+# 停止
+docker-compose down
+
+# 查看日志
+docker-compose logs -f
+
+# 重启
+docker-compose restart
+```
+
+## 项目结构
+
+```
+n8n-workflow-example/
+├── src/
+│   ├── docker-compose.yml    # Docker配置
+│   ├── setup.sh              # 设置脚本
+│   └── workflows/            # 示例工作流
+│       ├── hello-world.json
+│       ├── schedule-workflow.json
+│       └── webhook-workflow.json
+└── README.md
+```
+
+## 参考
+
+- [n8n 官方文档](https://docs.n8n.io/)
+
+## 许可证
+
+MIT
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang) 
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+**Project:** [n8n-workflow-example](https://wakuwaku-lab.github.io/n8n-workflow-example)
+
+a:T7ab,
+# n8n-workflow-example
+
+Example project for n8n (workflow automation tool).
+
+## Overview
+
+This project provides examples of workflow automation using n8n.
+
+## Requirements
+
+- Docker
+- Docker Compose
+
+## Quick Start
+
+```bash
+cd src
+./setup.sh
+```
+
+Or manually:
+
+```bash
+cd src
+docker-compose up -d
+```
+
+## Access
+
+- **URL**: http://localhost:5678
+- **Username**: admin
+- **Password**: admin123
+
+## Sample Workflows
+
+### 1. Hello World Workflow
+The most basic workflow. Manually triggered to output a message.
+
+**File**: `workflows/hello-world.json`
+
+### 2. Schedule Workflow
+A workflow that runs periodically every 5 minutes. Makes HTTP requests and processes data.
+
+**File**: `workflows/schedule-workflow.json`
+
+### 3. Webhook Workflow
+A workflow that receives webhooks, processes data, and returns a response.
+
+**File**: `workflows/webhook-workflow.json`
+
+## How to Import Workflows
+
+1. Click "Workflows" in the n8n left menu
+2. Click "Import from File"
+3. Select a JSON file from the `workflows/` folder
+4. Click "Import"
+
+## Running a Workflow
+
+1. Open the workflow
+2. Click "Execute Workflow"
+3. View the results
+
+## Docker Commands
+
+```bash
+# Start
+docker-compose up -d
+
+# Stop
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Restart
+docker-compose restart
+```
+
+## Project Structure
+
+```
+n8n-workflow-example/
+├── src/
+│   ├── docker-compose.yml    # Docker configuration
+│   ├── setup.sh              # Setup script
+│   └── workflows/            # Sample workflows
+│       ├── hello-world.json
+│       ├── schedule-workflow.json
+│       └── webhook-workflow.json
+└── README.md
+```
+
+## References
+
+- [n8n Official Documentation](https://docs.n8n.io/)
+
+## License
+
+MIT
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang) 
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+**Project:** [n8n-workflow-example](https://wakuwaku-lab.github.io/n8n-workflow-example)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-n8n-workflow-example","repo":"n8n-workflow-example","lang":"ja","title":"n8n-workflow-example","excerpt":"n8n（ワークフロー自動化ツール）の示例プロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/n8n-workflow-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.11","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/n8n-workflow-example/","html_url":"https://github.com/wakuwaku-lab/n8n-workflow-example","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-n8n-workflow-example","repo":"n8n-workflow-example","lang":"zh","title":"n8n-workflow-example","excerpt":"n8n（工作流自动化工具）的示例项目。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/n8n-workflow-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.11","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/n8n-workflow-example/","html_url":"https://github.com/wakuwaku-lab/n8n-workflow-example","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-n8n-workflow-example","repo":"n8n-workflow-example","lang":"en","title":"n8n-workflow-example","excerpt":"Example project for n8n (workflow automation tool).","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/n8n-workflow-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.11","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/n8n-workflow-example/","html_url":"https://github.com/wakuwaku-lab/n8n-workflow-example","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-mysql-tax-return","repo":"mysql-tax-return","lang":"ja","title":"MySQLで確定申告","excerpt":"このプロジェクトは、MySQLを使用した複式簿記による青色申告の帳簿作成例を提供します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/mysql-tax-return","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.07","category":"Shell","tags":["Shell"],"homepage":"https://wakuwaku-lab.github.io/mysql-tax-return/","html_url":"https://github.com/wakuwaku-lab/mysql-tax-return","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

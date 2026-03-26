@@ -1,0 +1,266 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-papertail","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-papertail","d"],{"children":["__PAGE__?{\"id\":\"repo-papertail\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-papertail","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T7ad,
+# Papertail
+
+A CLI tool for downloading and processing logs from the Papertrail API.
+
+## Installation
+
+```bash
+go install github.com/wakuwaku-lab/papertail@latest
+````
+
+Or build from source:
+
+```bash
+git clone https://github.com/wakuwaku-lab/papertail.git
+cd papertail
+go build -o papertail .
+```
+
+## Configuration
+
+Two methods are supported for configuring the API token:
+
+**Method 1: Environment Variable**
+
+```bash
+export PAPERTRAIL_API_TOKEN="your_token_here"
+```
+
+**Method 2: .env File**
+
+```bash
+# Create a .env file in the project directory
+echo "PAPERTRAIL_API_TOKEN=your_token_here" > .env
+```
+
+The program will automatically load the `.env` file from the current directory.
+
+## Usage
+
+### Three Modes
+
+**1. Download by Hour**
+
+```bash
+# Last 24 hours
+papertail logs --hours 24 --tsv output.tsv
+
+# Specific hour range (1–6 hours ago)
+papertail logs --hours 1-6 --tsv output.tsv
+```
+
+**2. Download by Specific Date**
+
+```bash
+papertail logs --date 2024-03-01 --tsv output.tsv
+```
+
+**3. Download by Date Range**
+
+```bash
+papertail logs --start 2024-03-01 --end 2024-03-07 --tsv output.tsv
+```
+
+### Parameters
+
+| Parameter | Short | Description                                           |
+| --------- | ----- | ----------------------------------------------------- |
+| `--hours` | `-n`  | Number of hours, supports formats like `24` or `1-12` |
+| `--date`  | `-D`  | Specific date (YYYY-MM-DD)                            |
+| `--start` | `-s`  | Start date of the date range                          |
+| `--end`   | `-e`  | End date of the date range                            |
+| `--tsv`   | `-t`  | Output TSV file path                                  |
+| `--db`    | `-d`  | SQLite database path (optional)                       |
+
+### Import into SQLite
+
+```bash
+papertail logs --hours 24 --db logs.db --tsv logs.tsv
+```
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T7ad,
+# Papertail
+
+A CLI tool for downloading and processing logs from the Papertrail API.
+
+## Installation
+
+```bash
+go install github.com/wakuwaku-lab/papertail@latest
+````
+
+Or build from source:
+
+```bash
+git clone https://github.com/wakuwaku-lab/papertail.git
+cd papertail
+go build -o papertail .
+```
+
+## Configuration
+
+Two methods are supported for configuring the API token:
+
+**Method 1: Environment Variable**
+
+```bash
+export PAPERTRAIL_API_TOKEN="your_token_here"
+```
+
+**Method 2: .env File**
+
+```bash
+# Create a .env file in the project directory
+echo "PAPERTRAIL_API_TOKEN=your_token_here" > .env
+```
+
+The program will automatically load the `.env` file from the current directory.
+
+## Usage
+
+### Three Modes
+
+**1. Download by Hour**
+
+```bash
+# Last 24 hours
+papertail logs --hours 24 --tsv output.tsv
+
+# Specific hour range (1–6 hours ago)
+papertail logs --hours 1-6 --tsv output.tsv
+```
+
+**2. Download by Specific Date**
+
+```bash
+papertail logs --date 2024-03-01 --tsv output.tsv
+```
+
+**3. Download by Date Range**
+
+```bash
+papertail logs --start 2024-03-01 --end 2024-03-07 --tsv output.tsv
+```
+
+### Parameters
+
+| Parameter | Short | Description                                           |
+| --------- | ----- | ----------------------------------------------------- |
+| `--hours` | `-n`  | Number of hours, supports formats like `24` or `1-12` |
+| `--date`  | `-D`  | Specific date (YYYY-MM-DD)                            |
+| `--start` | `-s`  | Start date of the date range                          |
+| `--end`   | `-e`  | End date of the date range                            |
+| `--tsv`   | `-t`  | Output TSV file path                                  |
+| `--db`    | `-d`  | SQLite database path (optional)                       |
+
+### Import into SQLite
+
+```bash
+papertail logs --hours 24 --db logs.db --tsv logs.tsv
+```
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T7ad,
+# Papertail
+
+A CLI tool for downloading and processing logs from the Papertrail API.
+
+## Installation
+
+```bash
+go install github.com/wakuwaku-lab/papertail@latest
+````
+
+Or build from source:
+
+```bash
+git clone https://github.com/wakuwaku-lab/papertail.git
+cd papertail
+go build -o papertail .
+```
+
+## Configuration
+
+Two methods are supported for configuring the API token:
+
+**Method 1: Environment Variable**
+
+```bash
+export PAPERTRAIL_API_TOKEN="your_token_here"
+```
+
+**Method 2: .env File**
+
+```bash
+# Create a .env file in the project directory
+echo "PAPERTRAIL_API_TOKEN=your_token_here" > .env
+```
+
+The program will automatically load the `.env` file from the current directory.
+
+## Usage
+
+### Three Modes
+
+**1. Download by Hour**
+
+```bash
+# Last 24 hours
+papertail logs --hours 24 --tsv output.tsv
+
+# Specific hour range (1–6 hours ago)
+papertail logs --hours 1-6 --tsv output.tsv
+```
+
+**2. Download by Specific Date**
+
+```bash
+papertail logs --date 2024-03-01 --tsv output.tsv
+```
+
+**3. Download by Date Range**
+
+```bash
+papertail logs --start 2024-03-01 --end 2024-03-07 --tsv output.tsv
+```
+
+### Parameters
+
+| Parameter | Short | Description                                           |
+| --------- | ----- | ----------------------------------------------------- |
+| `--hours` | `-n`  | Number of hours, supports formats like `24` or `1-12` |
+| `--date`  | `-D`  | Specific date (YYYY-MM-DD)                            |
+| `--start` | `-s`  | Start date of the date range                          |
+| `--end`   | `-e`  | End date of the date range                            |
+| `--tsv`   | `-t`  | Output TSV file path                                  |
+| `--db`    | `-d`  | SQLite database path (optional)                       |
+
+### Import into SQLite
+
+```bash
+papertail logs --hours 24 --db logs.db --tsv logs.tsv
+```
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-papertail","repo":"papertail","lang":"ja","title":"Papertail","excerpt":"A CLI tool for downloading and processing logs from the Papertrail API.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/papertail","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.09","category":"Go","tags":["Go"],"homepage":"https://wakuwaku-lab.github.io/papertail/","html_url":"https://github.com/wakuwaku-lab/papertail","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-papertail","repo":"papertail","lang":"zh","title":"Papertail","excerpt":"A CLI tool for downloading and processing logs from the Papertrail API.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/papertail","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.09","category":"Go","tags":["Go"],"homepage":"https://wakuwaku-lab.github.io/papertail/","html_url":"https://github.com/wakuwaku-lab/papertail","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-papertail","repo":"papertail","lang":"en","title":"Papertail","excerpt":"A CLI tool for downloading and processing logs from the Papertrail API.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/papertail","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.09","category":"Go","tags":["Go"],"homepage":"https://wakuwaku-lab.github.io/papertail/","html_url":"https://github.com/wakuwaku-lab/papertail","slide_url":""},"content":"$a"}},"relatedPosts":[],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

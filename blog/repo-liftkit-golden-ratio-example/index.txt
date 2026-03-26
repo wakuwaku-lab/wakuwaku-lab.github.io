@@ -1,0 +1,330 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-liftkit-golden-ratio-example","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-liftkit-golden-ratio-example","d"],{"children":["__PAGE__?{\"id\":\"repo-liftkit-golden-ratio-example\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-liftkit-golden-ratio-example","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:Tffa,
+# LiftKit Golden Ratio Example
+
+黄金比（φ ≈ 1.618）に基づいてUIを自動生成するNext.js UIフレームワーク「LiftKit」のサンプルプロジェクトです。
+
+## 概要
+
+LiftKitは、「完璧主義者のためのNext.js UIフレームワーク」として知られるオープンソースのUIフレームワークです。黄金比（φ = 1.618...）に基づいて、すべての余白・フォントサイズ・ボーダー半径を自動計算し、「なぜか心地よいUI」を提供します。
+
+### 主な特徴
+
+- **黄金比ベースのスペーシング**: すべてのサイズと間隔が黄金比から導出される
+- **Dynamic Color**: リアルタイムにカラーテーマをプレビュー・変更可能
+- **豊富なコンポーネント**: Badge、Button、Card、Inputなどの組み込みコンポーネント
+- **Apache-2.0ライセンス**: 商利用可能な無料オープンソース
+
+## 必要環境
+
+- Node.js 18.x以上
+- npm 9.x以上
+- Git
+
+## インストール方法
+
+### 手順1: 依存関係をインストール
+
+```bash
+cd liftkit-golden-ratio-example
+npm install
+```
+
+### 手順2: 開発サーバーを起動
+
+```bash
+npm run dev
+```
+
+ブラウザで http://localhost:3000 にアクセスすると、サンプルページが表示されます。
+
+## プロジェクトの構造
+
+```
+liftkit-golden-ratio-example/
+├── src/
+│   ├── app/
+│   │   ├── globals.css    # LiftKit CSS変数とスタイル
+│   │   ├── layout.tsx     # ルートレイアウト
+│   │   └── page.tsx       # メインページ（ демо）
+│   └── lib/css/
+│       └── index.css      # LiftKit Core CSS
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
+
+## デモ内容
+
+このサンプルプロジェクトには以下のデモが含まれています：
+
+1. **Dynamic Color（動的テーマ変更）**: 5つのカラーテーマ（Default、Ocean、Forest、Sunset、Royal）をリアルタイムに切り替え可能
+2. **黄金比スペーシング**: φ⁻³〜φ⁰のスペーシング例を表示
+3. **UIコンポーネント**: Card、Button、Inputなどのサンプル
+4. **タイポグラフィスケール**: 黄金比ベースのフォントサイズ例
+
+## 黄金比について
+
+**黄金比（φ = 1.618...）** は、古代ギリシャから「最も美しい比率」として知られる数学定数です。ひまわりの種の配列、貝殻のらせん、パルテノン神殿など自然界や歴史的建造物の至るところに現れ、人間が直感的に「美しい」と感じる比率とされています。
+
+LiftKitはこの比率をUIのスペーシング・タイポグラフィ・ボーダー半径すべてに適用し、開発者が細かなピクセル調整コードを書かずとも、視覚的に洗練されたUIを生み出します。
+
+## 次のステップ
+
+実際のプロジェクトでLiftKitを使用するには：
+
+1. **新規プロジェクトの場合**:
+   ```bash
+   git clone https://github.com/Chainlift/liftkit-template.git
+   cd liftkit-template
+   npm install
+   npm run dev
+   ```
+
+2. **既存のNext.jsプロジェクトに追加する場合**:
+   ```bash
+   npm install @chainlift/liftkit --save-dev
+   npx liftkit init
+   ```
+
+詳細な情報は以下のリンクを参照してください：
+
+- [LiftKit 公式サイト](https://www.chainlift.io/liftkit)
+- [GitHub - Chainlift/liftkit](https://github.com/Chainlift/liftkit)
+- [LiftKit インストールドキュメント](https://www.chainlift.io/liftkit/install)
+
+## ライセンス
+
+Apache-2.0ライセンス - 商利用可能な無料オープンソース
+
+---
+
+**作成者:** [exia.huang](https://github.com/exiahuang)  
+**組織:** [wakuwaku-lab](https://github.com/wakuwaku-lab)  
+**プロジェクト:** [liftkit-golden-ratio-example](https://wakuwaku-lab.github.io/liftkit-golden-ratio-example)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:Tc6e,
+# LiftKit 黄金比例示例
+
+这是一个基于黄金比例（φ ≈ 1.618）自动生成UI的Next.js UI框架"LiftKit"的示例项目。
+
+## 概述
+
+LiftKit是一个被称为"完美主义者的Next.js UI框架"的开源UI框架。它基于黄金比（φ = 1.618...）自动计算所有间距、字体大小和边框半径，提供"不知为何很舒服的UI"。
+
+### 主要特点
+
+- **黄金比例间距**: 所有尺寸和间距都从黄金比例导出
+- **Dynamic Color（动态主题）**: 可实时预览和更改配色主题
+- **丰富的组件**: Badge、Button、Card、Input等内置组件
+- **Apache-2.0许可证**: 可商用的免费开源软件
+
+## 环境要求
+
+- Node.js 18.x 或更高版本
+- npm 9.x 或更高版本
+- Git
+
+## 安装方法
+
+### 步骤1: 安装依赖
+
+```bash
+cd liftkit-golden-ratio-example
+npm install
+```
+
+### 步骤2: 启动开发服务器
+
+```bash
+npm run dev
+```
+
+在浏览器中访问 http://localhost:3000 即可看到示例页面。
+
+## 项目结构
+
+```
+liftkit-golden-ratio-example/
+├── src/
+│   ├── app/
+│   │   ├── globals.css    # LiftKit CSS变量和样式
+│   │   ├── layout.tsx     # 根布局
+│   │   └── page.tsx       # 主页面（演示）
+│   └── lib/css/
+│       └── index.css      # LiftKit Core CSS
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
+
+## 演示内容
+
+此示例项目包含以下演示：
+
+1. **Dynamic Color（动态主题切换）**: 5种配色主题（Default、Ocean、Forest、Sunset、Royal）可实时切换
+2. **黄金比例间距**: 显示φ⁻³〜φ⁰的间距示例
+3. **UI组件**: Card、Button、Input等示例
+4. **排版比例**: 基于黄金比例的字体大小示例
+
+## 关于黄金比例
+
+**黄金比例（φ = 1.618...）** 是从古希腊就被称为"最美比例"的数学常数。它出现在向日葵种子排列、贝壳螺旋、帕特农神庙等自然和历史建筑中，被认为人类直观上会觉得"美丽"的比例。
+
+LiftKit将此比例应用于UI的所有间距、排版和边框半径，让开发者无需编写细微的像素调整代码，就能创建出视觉上精炼的UI。
+
+## 下一步
+
+要在实际项目中使用LiftKit：
+
+1. **新项目的情况**:
+   ```bash
+   git clone https://github.com/Chainlift/liftkit-template.git
+   cd liftkit-template
+   npm install
+   npm run dev
+   ```
+
+2. **添加到现有Next.js项目的情况**:
+   ```bash
+   npm install @chainlift/liftkit --save-dev
+   npx liftkit init
+   ```
+
+更多信息请参阅以下链接：
+
+- [LiftKit 官网](https://www.chainlift.io/liftkit)
+- [GitHub - Chainlift/liftkit](https://github.com/Chainlift/liftkit)
+- [LiftKit 安装文档](https://www.chainlift.io/liftkit/install)
+
+## 许可证
+
+Apache-2.0许可证 - 可商用的免费开源软件
+
+---
+
+**作者:** [exia.huang](https://github.com/exiahuang)  
+**组织:** [wakuwaku-lab](https://github.com/wakuwaku-lab)  
+**项目:** [liftkit-golden-ratio-example](https://wakuwaku-lab.github.io/liftkit-golden-ratio-example)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:Tcbc,
+# LiftKit Golden Ratio Example
+
+This is a sample project for LiftKit, a Next.js UI framework that automatically generates UIs based on the golden ratio (φ ≈ 1.618).
+
+## Overview
+
+LiftKit is an open-source UI framework known as "the Next.js UI framework for perfectionists." It automatically calculates all spacing, font sizes, and border radii based on the golden ratio (φ = 1.618...), providing UIs that feel inherently pleasing.
+
+### Key Features
+
+- **Golden Ratio Spacing**: All sizes and spacing derived from the golden ratio
+- **Dynamic Color**: Preview and change color themes in real-time
+- **Rich Components**: Built-in components like Badge, Button, Card, Input
+- **Apache-2.0 License**: Free open-source software for commercial use
+
+## Requirements
+
+- Node.js 18.x or higher
+- npm 9.x or higher
+- Git
+
+## Installation
+
+### Step 1: Install dependencies
+
+```bash
+cd liftkit-golden-ratio-example
+npm install
+```
+
+### Step 2: Start the development server
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000 in your browser to view the sample page.
+
+## Project Structure
+
+```
+liftkit-golden-ratio-example/
+├── src/
+│   ├── app/
+│   │   ├── globals.css    # LiftKit CSS variables and styles
+│   │   ├── layout.tsx     # Root layout
+│   │   └── page.tsx       # Main page (demo)
+│   └── lib/css/
+│       └── index.css      # LiftKit Core CSS
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
+
+## Demo Contents
+
+This sample project includes the following demos:
+
+1. **Dynamic Color**: 5 color themes (Default, Ocean, Forest, Sunset, Royal) with real-time switching
+2. **Golden Ratio Spacing**: Examples of φ⁻³〜φ⁰ spacing
+3. **UI Components**: Samples of Card, Button, Input, etc.
+4. **Typography Scale**: Golden ratio-based font size examples
+
+## About the Golden Ratio
+
+**The golden ratio (φ = 1.618...)** is a mathematical constant known since ancient Greece as "the most beautiful ratio." It appears throughout nature and historic architecture—in sunflower seed arrangements, shell spirals, the Parthenon—and is considered a ratio that humans intuitively perceive as "beautiful."
+
+LiftKit applies this ratio to all UI spacing, typography, and border radii, enabling developers to create visually refined UIs without writing detailed pixel-adjustment code.
+
+## Next Steps
+
+To use LiftKit in a real project:
+
+1. **For new projects**:
+   ```bash
+   git clone https://github.com/Chainlift/liftkit-template.git
+   cd liftkit-template
+   npm install
+   npm run dev
+   ```
+
+2. **To add to an existing Next.js project**:
+   ```bash
+   npm install @chainlift/liftkit --save-dev
+   npx liftkit init
+   ```
+
+For more information, see:
+
+- [LiftKit Official Website](https://www.chainlift.io/liftkit)
+- [GitHub - Chainlift/liftkit](https://github.com/Chainlift/liftkit)
+- [LiftKit Installation Document](https://www.chainlift.io/liftkit/install)
+
+## License
+
+Apache-2.0 License - Free open-source software for commercial use
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)  
+**Project:** [liftkit-golden-ratio-example](https://wakuwaku-lab.github.io/liftkit-golden-ratio-example)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"ja","title":"LiftKit Golden Ratio Example","excerpt":"黄金比（φ ≈ 1.618）に基づいてUIを自動生成するNext.js UIフレームワーク「LiftKit」のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"zh","title":"LiftKit 黄金比例示例","excerpt":"这是一个基于黄金比例（φ ≈ 1.618）自动生成UI的Next.js UI框架'LiftKit'的示例项目。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"en","title":"LiftKit Golden Ratio Example","excerpt":"This is a sample project for LiftKit, a Next.js UI framework that automatically generates UIs based on the golden ratio ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-station-property-search","repo":"station-property-search","lang":"ja","title":"station-property-search","excerpt":"最寄り駅から指定時間内で到達可能な物件を地図上に表示するアプリケーション","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"ja","title":"Redocly + OpenAPI サンプル","excerpt":"このプロジェクトでは、RedoclyとOpenAPI仕様を使用して美しいAPIドキュメントを生成する方法を説明します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""},{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"ja","title":"Remotion 入門ガイド","excerpt":"Remotionを使用した動画作成のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

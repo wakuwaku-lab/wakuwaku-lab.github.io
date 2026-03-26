@@ -1,0 +1,356 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-agentic-project-template","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-agentic-project-template","d"],{"children":["__PAGE__?{\"id\":\"repo-agentic-project-template\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-agentic-project-template","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T1116,
+# Agentic Project Template
+
+Claude Codeのエージェンティックエンジニアリングを実証するテンプレートプロジェクトです。
+
+## 概要
+
+このプロジェクトは、記事「Claude Code エージェンティックエンジニアリング完全ガイド」で紹介されている3層アーキテクチャを実際に動作するコードとして実装したものです。
+
+### アーキテクチャ
+
+```
+┌─────────────────────────────────────────────┐
+│ CLAUDE.md (ディレクトリ)                    │
+│   → セッションハーフック                     │
+│   → ナビゲーション特化                        │
+├─────────────────────────────────────────────┤
+│ .claude/rules/ (条件付き)                   │
+│   → 段階的開示 (Progressive Disclosure)    │
+│   → pathsベースの注入                       │
+├─────────────────────────────────────────────┤
+│ skills/ (オーケストレーション)              │
+│   → 遅延読み込み                             │
+│   → Agents + Scripts + References          │
+└─────────────────────────────────────────────┘
+```
+
+## インストール
+
+```bash
+npm install
+```
+
+## 実行
+
+```bash
+npm start
+```
+
+## デモ出力
+
+```
+=== Agentic Engineering Demo ===
+
+[Layer] CLAUDE.md - Session Start Hook
+  → Loaded as: User Message
+
+[Conditional Rules] .claude/rules/
+  → Progressive Disclosure: ON
+  → paths: ["src/**", "apps/**"]
+
+[Task Recipes] skills/
+  → Lazy Loading: ON
+  → Triggered on demand
+
+✓ All layers initialized
+```
+
+## 主要概念
+
+### 1. CLAUDE.mdはセッションハーフック
+
+CLAUDE.mdはSystem Promptではなく、セッション開始時のUser Messageとして注入されます。ルールを書く場所ではなく、どのファイルを参照すべきかを記した「ディレクトリ」として機能させます。
+
+### 2. Progressive Disclosure
+
+条件付きルール（`.claude/rules/`）は、pathsで指定したファイルを初めてアクセスしたタイミングで注入されます。これにより、必要な情報が新しいメッセージとして届き、効果的になります。
+
+### 3. スキルはオーケストレーター
+
+スキルは「レシピ」ではなく、オーケストレーターとして機能します。SKILL.mdは「いつ・誰に・何を任せるか」だけを記述し、具体的な処理は外部ファイル（agents/, references/, scripts/）に委ねます。
+
+### 4. 対立エージェントパターン
+
+コード分析では、3つのエージェントを組み合わせて真実に近づきます：
+- Bug Finder: ありとあらゆる問題を報告（過検出方向）
+- Adversarial: 誤報を否定（過少検出方向）
+- Referee: 中立的な最終判定
+
+## プロジェクト構造
+
+```
+agentic-project-template/
+├── CLAUDE.md                    # ディレクトリ
+├── src/
+│   ├── index.js                 # デモ実行
+│   └── analyzer.js              # コード分析デモ
+├── .claude/rules/
+│   ├── meta/
+│   │   └── execution-workflow.md
+│   ├── coding/
+│   │   └── coding-guides.md
+│   └── writing/
+│       └── writing-guides.md
+└── skills/
+    ├── writing-articles/
+    │   └── SKILL.md
+    └── analyzing-code/
+        └── SKILL.md
+```
+
+## 関連資料
+
+- 元記事: [Claude Code エージェンティックエンジニアリング完全ガイド](https://note.com/fabymetal/n/n39d0c7950a23)
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/agentic-project-template](https://wakuwaku-lab.github.io/agentic-project-template)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:Te57,
+# Agentic Project Template
+
+这是一个展示Claude Code代理工程（Agentic Engineering）的模板项目。
+
+## 概述
+
+本项目将文章「Claude Code 代理工程完全指南」中介绍的3层架构实现为可运行的代码。
+
+### 架构
+
+```
+┌─────────────────────────────────────────────┐
+│ CLAUDE.md (目录)                            │
+│   → 会话启动钩子                             │
+│   → 导航专用                                 │
+├─────────────────────────────────────────────┤
+│ .claude/rules/ (条件性)                     │
+│   → 渐进式披露 (Progressive Disclosure)     │
+│   → 基于paths的注入                         │
+├─────────────────────────────────────────────┤
+│ skills/ (编排)                              │
+│   → 延迟加载                                 │
+│   → Agents + Scripts + References          │
+└─────────────────────────────────────────────┘
+```
+
+## 安装
+
+```bash
+npm install
+```
+
+## 运行
+
+```bash
+npm start
+```
+
+## 演示输出
+
+```
+=== Agentic Engineering Demo ===
+
+[Layer] CLAUDE.md - Session Start Hook
+  → Loaded as: User Message
+
+[Conditional Rules] .claude/rules/
+  → Progressive Disclosure: ON
+  → paths: ["src/**", "apps/**"]
+
+[Task Recipes] skills/
+  → Lazy Loading: ON
+  → Triggered on demand
+
+✓ All layers initialized
+```
+
+## 核心概念
+
+### 1. CLAUDE.md是会话启动钩子
+
+CLAUDE.md不是System Prompt，而是作为会话开始时的User Message注入。它不是写规则的地方，而是记录应该引用哪些文件的"目录"。
+
+### 2. 渐进式披露
+
+条件规则（`.claude/rules/`）在首次访问paths指定的文件时注入。这使得必要的信息作为新消息送达，更加有效。
+
+### 3. 技能是编排器
+
+技能不是"食谱"，而是作为编排器工作。SKILL.md只描述"何时委托给谁做什么"，具体处理委派给外部文件（agents/, references/, scripts/）。
+
+### 4. 对抗性代理模式
+
+在代码分析中，结合3个代理来接近真相：
+- Bug Finder: 报告所有问题（过度检测方向）
+- Adversarial: 否定误报（不足检测方向）
+- Referee: 中立最终判定
+
+## 项目结构
+
+```
+agentic-project-template/
+├── CLAUDE.md                    # 目录
+├── src/
+│   ├── index.js                 # 演示执行
+│   └── analyzer.js              # 代码分析演示
+├── .claude/rules/
+│   ├── meta/
+│   │   └── execution-workflow.md
+│   ├── coding/
+│   │   └── coding-guides.md
+│   └── writing/
+│       └── writing-guides.md
+└── skills/
+    ├── writing-articles/
+    │   └── SKILL.md
+    └── analyzing-code/
+        └── SKILL.md
+```
+
+## 相关资料
+
+- 原文: [Claude Code 代理工程完全指南](https://note.com/fabymetal/n/n39d0c7950a23)
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/agentic-project-template](https://wakuwaku-lab.github.io/agentic-project-template)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:Teed,
+# Agentic Project Template
+
+A template project demonstrating Claude Code Agentic Engineering.
+
+## Overview
+
+This project implements the 3-layer architecture introduced in the article "Claude Code Agentic Engineering Complete Guide" as runnable code.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────┐
+│ CLAUDE.md (Directory)                       │
+│   → Session Start Hook                      │
+│   → Navigation-focused                       │
+├─────────────────────────────────────────────┤
+│ .claude/rules/ (Conditional)               │
+│   → Progressive Disclosure                  │
+│   → paths-based injection                   │
+├─────────────────────────────────────────────┤
+│ skills/ (Orchestration)                    │
+│   → Lazy Loading                            │
+│   → Agents + Scripts + References           │
+└─────────────────────────────────────────────┘
+```
+
+## Installation
+
+```bash
+npm install
+```
+
+## Run
+
+```bash
+npm start
+```
+
+## Demo Output
+
+```
+=== Agentic Engineering Demo ===
+
+[Layer] CLAUDE.md - Session Start Hook
+  → Loaded as: User Message
+
+[Conditional Rules] .claude/rules/
+  → Progressive Disclosure: ON
+  → paths: ["src/**", "apps/**"]
+
+[Task Recipes] skills/
+  → Lazy Loading: ON
+  → Triggered on demand
+
+✓ All layers initialized
+```
+
+## Key Concepts
+
+### 1. CLAUDE.md is Session Start Hook
+
+CLAUDE.md is not a System Prompt but is injected as a User Message at session start. Instead of writing rules, it acts as a "directory" that specifies which files to reference.
+
+### 2. Progressive Disclosure
+
+Conditional rules (`.claude/rules/`) are injected when files matching `paths` are first accessed. This ensures essential information arrives as a newer message, making it more effective.
+
+### 3. Skills are Orchestrators
+
+Skills are not "recipes" but function as orchestrators. SKILL.md only describes "who to delegate what to and when", delegating specific processing to external files (agents/, references/, scripts/).
+
+### 4. Adversarial Agent Pattern
+
+In code analysis, combine 3 agents to approach truth:
+- Bug Finder: Reports all possible issues (over-detection direction)
+- Adversarial: Dismisses false positives (under-detection direction)
+- Referee: Neutral final judgment
+
+## Project Structure
+
+```
+agentic-project-template/
+├── CLAUDE.md                    # Directory
+├── src/
+│   ├── index.js                 # Demo execution
+│   └── analyzer.js              # Code analysis demo
+├── .claude/rules/
+│   ├── meta/
+│   │   └── execution-workflow.md
+│   ├── coding/
+│   │   └── coding-guides.md
+│   └── writing/
+│       └── writing-guides.md
+└── skills/
+    ├── writing-articles/
+    │   └── SKILL.md
+    └── analyzing-code/
+        └── SKILL.md
+```
+
+## Related Resources
+
+- Original Article: [Claude Code Agentic Engineering Complete Guide](https://note.com/fabymetal/n/n39d0c7950a23)
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/agentic-project-template](https://wakuwaku-lab.github.io/agentic-project-template)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"ja","title":"Agentic Project Template","excerpt":"Claude Codeのエージェンティックエンジニアリングを実証するテンプレートプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"zh","title":"Agentic Project Template","excerpt":"这是一个展示Claude Code代理工程（Agentic Engineering）的模板项目。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"en","title":"Agentic Project Template","excerpt":"A template project demonstrating Claude Code Agentic Engineering.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"ja","title":"ピアノ楽譜プレイヤー","excerpt":"Reactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/ja/"},{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"ja","title":"AI Agent Closed Loop","excerpt":"AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"ja","title":"Claude Code × Notion MCP 求人票作成デモ","excerpt":"このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

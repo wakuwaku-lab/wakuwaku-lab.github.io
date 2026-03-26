@@ -1,0 +1,197 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-rust-wasm-docker-example","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-rust-wasm-docker-example","d"],{"children":["__PAGE__?{\"id\":\"repo-rust-wasm-docker-example\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-rust-wasm-docker-example","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T6b9,
+# Rust WebAssembly Docker Example
+
+This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compose with mount volumes.
+
+## Prerequisites
+
+- Docker
+- docker-compose
+
+## Project Structure
+
+```
+rust-wasm-docker-example/
+├── docker-compose.yml    # Docker compose with volume mounts
+├── src/                 # Rust source code (mounted)
+│   ├── Cargo.toml
+│   └── src/lib.rs
+└── www/                 # Web output (mounted)
+    └── index.html
+```
+
+## Quick Start
+
+1. Build the WASM module:
+```bash
+cd rust-wasm-docker-example
+docker-compose run --rm wasm-builder
+```
+
+2. Start the development server:
+```bash
+docker-compose up dev-server
+```
+
+3. Open http://localhost:8080 in your browser
+
+## How It Works
+
+- **wasm-builder service**: Uses a pre-built Rust image with wasm-pack installed. Source code from `./src` is mounted as a volume. After compilation, output goes to `./www/pkg`.
+- **dev-server service**: Python HTTP server serves the `www` directory.
+- **Volumes**: Source code is mounted rather than copied into the image, following the principle of "prefer using mount volumes over building images when possible".
+
+## Features Demonstrated
+
+- **Rust → JavaScript**: Calling JS `alert()` from Rust
+- **JavaScript → Rust**: Calling Rust functions (`greet`, `add`, `fibonacci`) from JS
+- **Bidirectional communication** via wasm-bindgen
+
+## Building Manually
+
+To build inside the container:
+```bash
+docker-compose run --rm wasm-builder
+```
+
+The compiled WASM will appear in `www/pkg/`.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T6b9,
+# Rust WebAssembly Docker Example
+
+This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compose with mount volumes.
+
+## Prerequisites
+
+- Docker
+- docker-compose
+
+## Project Structure
+
+```
+rust-wasm-docker-example/
+├── docker-compose.yml    # Docker compose with volume mounts
+├── src/                 # Rust source code (mounted)
+│   ├── Cargo.toml
+│   └── src/lib.rs
+└── www/                 # Web output (mounted)
+    └── index.html
+```
+
+## Quick Start
+
+1. Build the WASM module:
+```bash
+cd rust-wasm-docker-example
+docker-compose run --rm wasm-builder
+```
+
+2. Start the development server:
+```bash
+docker-compose up dev-server
+```
+
+3. Open http://localhost:8080 in your browser
+
+## How It Works
+
+- **wasm-builder service**: Uses a pre-built Rust image with wasm-pack installed. Source code from `./src` is mounted as a volume. After compilation, output goes to `./www/pkg`.
+- **dev-server service**: Python HTTP server serves the `www` directory.
+- **Volumes**: Source code is mounted rather than copied into the image, following the principle of "prefer using mount volumes over building images when possible".
+
+## Features Demonstrated
+
+- **Rust → JavaScript**: Calling JS `alert()` from Rust
+- **JavaScript → Rust**: Calling Rust functions (`greet`, `add`, `fibonacci`) from JS
+- **Bidirectional communication** via wasm-bindgen
+
+## Building Manually
+
+To build inside the container:
+```bash
+docker-compose run --rm wasm-builder
+```
+
+The compiled WASM will appear in `www/pkg/`.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T6b9,
+# Rust WebAssembly Docker Example
+
+This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compose with mount volumes.
+
+## Prerequisites
+
+- Docker
+- docker-compose
+
+## Project Structure
+
+```
+rust-wasm-docker-example/
+├── docker-compose.yml    # Docker compose with volume mounts
+├── src/                 # Rust source code (mounted)
+│   ├── Cargo.toml
+│   └── src/lib.rs
+└── www/                 # Web output (mounted)
+    └── index.html
+```
+
+## Quick Start
+
+1. Build the WASM module:
+```bash
+cd rust-wasm-docker-example
+docker-compose run --rm wasm-builder
+```
+
+2. Start the development server:
+```bash
+docker-compose up dev-server
+```
+
+3. Open http://localhost:8080 in your browser
+
+## How It Works
+
+- **wasm-builder service**: Uses a pre-built Rust image with wasm-pack installed. Source code from `./src` is mounted as a volume. After compilation, output goes to `./www/pkg`.
+- **dev-server service**: Python HTTP server serves the `www` directory.
+- **Volumes**: Source code is mounted rather than copied into the image, following the principle of "prefer using mount volumes over building images when possible".
+
+## Features Demonstrated
+
+- **Rust → JavaScript**: Calling JS `alert()` from Rust
+- **JavaScript → Rust**: Calling Rust functions (`greet`, `add`, `fibonacci`) from JS
+- **Bidirectional communication** via wasm-bindgen
+
+## Building Manually
+
+To build inside the container:
+```bash
+docker-compose run --rm wasm-builder
+```
+
+The compiled WASM will appear in `www/pkg/`.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-rust-wasm-docker-example","repo":"rust-wasm-docker-example","lang":"ja","title":"Rust WebAssembly Docker Example","excerpt":"This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compo","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/rust-wasm-docker-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.10","category":"Makefile","tags":["Makefile"],"homepage":"https://wakuwaku-lab.github.io/rust-wasm-docker-example/","html_url":"https://github.com/wakuwaku-lab/rust-wasm-docker-example","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-rust-wasm-docker-example","repo":"rust-wasm-docker-example","lang":"zh","title":"Rust WebAssembly Docker Example","excerpt":"This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compo","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/rust-wasm-docker-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.10","category":"Makefile","tags":["Makefile"],"homepage":"https://wakuwaku-lab.github.io/rust-wasm-docker-example/","html_url":"https://github.com/wakuwaku-lab/rust-wasm-docker-example","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-rust-wasm-docker-example","repo":"rust-wasm-docker-example","lang":"en","title":"Rust WebAssembly Docker Example","excerpt":"This project demonstrates compiling Rust to WebAssembly and communicating with JavaScript, using Docker and docker-compo","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/rust-wasm-docker-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.10","category":"Makefile","tags":["Makefile"],"homepage":"https://wakuwaku-lab.github.io/rust-wasm-docker-example/","html_url":"https://github.com/wakuwaku-lab/rust-wasm-docker-example","slide_url":""},"content":"$a"}},"relatedPosts":[],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

@@ -1,0 +1,236 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-node-pc-automation","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-node-pc-automation","d"],{"children":["__PAGE__?{\"id\":\"repo-node-pc-automation\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-node-pc-automation","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T6f0,
+# Node.js PC Automation Example
+
+This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as required.
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+- Node.js (for running outside container)
+
+## Project Structure
+
+```
+node-pc-automation/
+├── docker-compose.yml    # Docker Compose with volume mounts
+├── Dockerfile           # Docker image definition
+├── package.json         # Node.js dependencies
+├── src/
+│   └── index.js         # Automation script
+├── README.md
+└── THINKING.md
+```
+
+## Docker Compose with Volume Mounts
+
+This project uses **mount volumes** instead of rebuilding images for code changes, following the best practice:
+
+```yaml
+volumes:
+  - ./src:/app/src
+  - ./package.json:/app/package.json
+  - ./package-lock.json:/app/package-lock.json
+```
+
+This allows:
+- Code changes in `src/` are reflected immediately
+- No need to rebuild the Docker image for every code change
+- Faster development iteration
+
+## Running the Example
+
+### Using Docker Compose
+
+```bash
+cd node-pc-automation
+docker-compose up
+```
+
+### Running on Host System
+
+For actual PC automation, run directly on the host:
+
+```bash
+npm install
+npm start
+```
+
+**Note**: PC automation libraries like `robotjs` require direct hardware access and cannot function inside a Docker container. The script includes error handling to detect containerized environments.
+
+## What It Does
+
+1. Gets screen size
+2. Moves mouse to center of screen
+3. Performs mouse click
+4. Types "Hello, World!"
+
+## Dependencies
+
+- `robotjs`: Node.js library for mouse and keyboard automation
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T6f0,
+# Node.js PC Automation Example
+
+This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as required.
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+- Node.js (for running outside container)
+
+## Project Structure
+
+```
+node-pc-automation/
+├── docker-compose.yml    # Docker Compose with volume mounts
+├── Dockerfile           # Docker image definition
+├── package.json         # Node.js dependencies
+├── src/
+│   └── index.js         # Automation script
+├── README.md
+└── THINKING.md
+```
+
+## Docker Compose with Volume Mounts
+
+This project uses **mount volumes** instead of rebuilding images for code changes, following the best practice:
+
+```yaml
+volumes:
+  - ./src:/app/src
+  - ./package.json:/app/package.json
+  - ./package-lock.json:/app/package-lock.json
+```
+
+This allows:
+- Code changes in `src/` are reflected immediately
+- No need to rebuild the Docker image for every code change
+- Faster development iteration
+
+## Running the Example
+
+### Using Docker Compose
+
+```bash
+cd node-pc-automation
+docker-compose up
+```
+
+### Running on Host System
+
+For actual PC automation, run directly on the host:
+
+```bash
+npm install
+npm start
+```
+
+**Note**: PC automation libraries like `robotjs` require direct hardware access and cannot function inside a Docker container. The script includes error handling to detect containerized environments.
+
+## What It Does
+
+1. Gets screen size
+2. Moves mouse to center of screen
+3. Performs mouse click
+4. Types "Hello, World!"
+
+## Dependencies
+
+- `robotjs`: Node.js library for mouse and keyboard automation
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T6f0,
+# Node.js PC Automation Example
+
+This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as required.
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+- Node.js (for running outside container)
+
+## Project Structure
+
+```
+node-pc-automation/
+├── docker-compose.yml    # Docker Compose with volume mounts
+├── Dockerfile           # Docker image definition
+├── package.json         # Node.js dependencies
+├── src/
+│   └── index.js         # Automation script
+├── README.md
+└── THINKING.md
+```
+
+## Docker Compose with Volume Mounts
+
+This project uses **mount volumes** instead of rebuilding images for code changes, following the best practice:
+
+```yaml
+volumes:
+  - ./src:/app/src
+  - ./package.json:/app/package.json
+  - ./package-lock.json:/app/package-lock.json
+```
+
+This allows:
+- Code changes in `src/` are reflected immediately
+- No need to rebuild the Docker image for every code change
+- Faster development iteration
+
+## Running the Example
+
+### Using Docker Compose
+
+```bash
+cd node-pc-automation
+docker-compose up
+```
+
+### Running on Host System
+
+For actual PC automation, run directly on the host:
+
+```bash
+npm install
+npm start
+```
+
+**Note**: PC automation libraries like `robotjs` require direct hardware access and cannot function inside a Docker container. The script includes error handling to detect containerized environments.
+
+## What It Does
+
+1. Gets screen size
+2. Moves mouse to center of screen
+3. Performs mouse click
+4. Types "Hello, World!"
+
+## Dependencies
+
+- `robotjs`: Node.js library for mouse and keyboard automation
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-node-pc-automation","repo":"node-pc-automation","lang":"ja","title":"Node.js PC Automation Example","excerpt":"This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/node-pc-automation","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/node-pc-automation/","html_url":"https://github.com/wakuwaku-lab/node-pc-automation","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-node-pc-automation","repo":"node-pc-automation","lang":"zh","title":"Node.js PC Automation Example","excerpt":"This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/node-pc-automation","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/node-pc-automation/","html_url":"https://github.com/wakuwaku-lab/node-pc-automation","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-node-pc-automation","repo":"node-pc-automation","lang":"en","title":"Node.js PC Automation Example","excerpt":"This example demonstrates Node.js PC automation using the `robotjs` library, with docker-compose using mount volumes as ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/node-pc-automation","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/node-pc-automation/","html_url":"https://github.com/wakuwaku-lab/node-pc-automation","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"ja","title":"ピアノ楽譜プレイヤー","excerpt":"Reactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/ja/"},{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"ja","title":"AI Agent Closed Loop","excerpt":"AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"ja","title":"Claude Code × Notion MCP 求人票作成デモ","excerpt":"このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

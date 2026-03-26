@@ -1,0 +1,272 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-redocly-openapi-example","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-redocly-openapi-example","d"],{"children":["__PAGE__?{\"id\":\"repo-redocly-openapi-example\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-redocly-openapi-example","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T90e,
+# Redocly + OpenAPI サンプル
+
+このプロジェクトでは、RedoclyとOpenAPI仕様を使用して美しいAPIドキュメントを生成する方法を説明します。
+
+## 機能
+
+- OpenAPI 3.0仕様によるAPI定義
+- Redoclyによるドキュメント生成
+- Express.jsサーバーと統合されたドキュメント
+- ボリュームマウントを使用したDocker Compose設定
+
+## クイックスタート
+
+### Docker Composeを使用（推奨）
+
+```bash
+# APIサーバーとドキュメントサーバーを起動
+docker-compose up
+
+# APIサーバーのみ起動
+docker-compose up api
+
+# ドキュメントサーバーのみ起動
+docker-compose up docs
+```
+
+ドキュメントへのアクセス: http://localhost:8080
+
+### ローカル開発
+
+```bash
+# 依存関係をインストール
+npm install
+
+# APIサーバーを起動
+npm run dev
+
+# ドキュメントを生成
+npm run docs:build
+
+# ドキュメントをプレビュー
+npm run docs:serve
+
+# OpenAPI仕様をリント
+npm run docs:lint
+```
+
+## エンドポイント
+
+| エンドポイント | 説明 |
+|----------------|------|
+| `http://localhost:3000/api/v1/users` | ユーザーAPI |
+| `http://localhost:3000/api/v1/products` | 商品API |
+| `http://localhost:3000/api-docs` | Redocドキュメント |
+| `http://localhost:3000/openapi.yaml` | OpenAPI仕様ファイル |
+| `http://localhost:8080/redoc-static.html` | 静的ドキュメント（ビルド後） |
+
+## プロジェクト構造
+
+```
+redocly-openapi-example/
+├── api/
+│   └── openapi.yaml      # OpenAPI仕様
+├── src/
+│   └── index.ts          # Expressサーバー
+├── docs/                  # 生成されたドキュメント
+├── docker-compose.yml
+├── package.json
+├── tsconfig.json
+└── redocly.yaml          # Redocly設定
+```
+
+## コマンド
+
+| コマンド | 説明 |
+|----------|------|
+| `npm run dev` | 開発サーバーを起動 |
+| `npm run docs:lint` | OpenAPI仕様を検証 |
+| `npm run docs:build` | 静的HTMLドキュメントを生成 |
+| `npm run docs:serve` | ドキュメントをプレビュー |
+| `npm run docs:bundle` | OpenAPI仕様をバンドル |
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T742,
+# Redocly + OpenAPI 示例
+
+本项目演示如何使用 Redocly 和 OpenAPI 规范生成美观的 API 文档。
+
+## 功能特性
+
+- OpenAPI 3.0 规范定义 API
+- Redocly 生成文档
+- Express.js 服务器集成文档
+- 使用卷挂载的 Docker Compose 配置
+
+## 快速开始
+
+### 使用 Docker Compose（推荐）
+
+```bash
+# 启动 API 服务器和文档服务器
+docker-compose up
+
+# 仅启动 API 服务器
+docker-compose up api
+
+# 仅启动文档服务器
+docker-compose up docs
+```
+
+访问文档: http://localhost:8080
+
+### 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 运行 API 服务器
+npm run dev
+
+# 生成文档
+npm run docs:build
+
+# 预览文档
+npm run docs:serve
+
+# 检查 OpenAPI 规范
+npm run docs:lint
+```
+
+## 端点
+
+| 端点 | 描述 |
+|------|------|
+| `http://localhost:3000/api/v1/users` | 用户 API |
+| `http://localhost:3000/api/v1/products` | 产品 API |
+| `http://localhost:3000/api-docs` | Redoc 文档 |
+| `http://localhost:3000/openapi.yaml` | OpenAPI 规范文件 |
+| `http://localhost:8080/redoc-static.html` | 静态文档（构建后） |
+
+## 项目结构
+
+```
+redocly-openapi-example/
+├── api/
+│   └── openapi.yaml      # OpenAPI 规范
+├── src/
+│   └── index.ts          # Express 服务器
+├── docs/                  # 生成的文档
+├── docker-compose.yml
+├── package.json
+├── tsconfig.json
+└── redocly.yaml          # Redocly 配置
+```
+
+## 命令
+
+| 命令 | 描述 |
+|------|------|
+| `npm run dev` | 启动开发服务器 |
+| `npm run docs:lint` | 验证 OpenAPI 规范 |
+| `npm run docs:build` | 生成静态 HTML 文档 |
+| `npm run docs:serve` | 预览文档 |
+| `npm run docs:bundle` | 打包 OpenAPI 规范 |
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T808,
+# Redocly + OpenAPI Example
+
+This project demonstrates how to generate beautiful API documentation using Redocly and OpenAPI specification.
+
+## Features
+
+- OpenAPI 3.0 specification for API definition
+- Redocly for documentation generation
+- Express.js server with integrated docs
+- Docker Compose setup with volume mounts
+
+## Quick Start
+
+### Using Docker Compose (Recommended)
+
+```bash
+# Start both API server and documentation server
+docker-compose up
+
+# Start only the API server
+docker-compose up api
+
+# Start only the documentation server
+docker-compose up docs
+```
+
+Access the documentation at: http://localhost:8080
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run the API server
+npm run dev
+
+# Generate documentation
+npm run docs:build
+
+# Preview documentation
+npm run docs:serve
+
+# Lint OpenAPI spec
+npm run docs:lint
+```
+
+## Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `http://localhost:3000/api/v1/users` | User API |
+| `http://localhost:3000/api/v1/products` | Product API |
+| `http://localhost:3000/api-docs` | Redoc documentation |
+| `http://localhost:3000/openapi.yaml` | OpenAPI spec file |
+| `http://localhost:8080/redoc-static.html` | Static docs (after build) |
+
+## Project Structure
+
+```
+redocly-openapi-example/
+├── api/
+│   └── openapi.yaml      # OpenAPI specification
+├── src/
+│   └── index.ts          # Express server
+├── docs/                  # Generated documentation
+├── docker-compose.yml
+├── package.json
+├── tsconfig.json
+└── redocly.yaml          # Redocly configuration
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run docs:lint` | Validate OpenAPI spec |
+| `npm run docs:build` | Generate static HTML docs |
+| `npm run docs:serve` | Preview documentation |
+| `npm run docs:bundle` | Bundle OpenAPI spec |
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"ja","title":"Redocly + OpenAPI サンプル","excerpt":"このプロジェクトでは、RedoclyとOpenAPI仕様を使用して美しいAPIドキュメントを生成する方法を説明します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"zh","title":"Redocly + OpenAPI 示例","excerpt":"本项目演示如何使用 Redocly 和 OpenAPI 规范生成美观的 API 文档。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"en","title":"Redocly + OpenAPI Example","excerpt":"This project demonstrates how to generate beautiful API documentation using Redocly and OpenAPI specification.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-station-property-search","repo":"station-property-search","lang":"ja","title":"station-property-search","excerpt":"最寄り駅から指定時間内で到達可能な物件を地図上に表示するアプリケーション","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"ja","title":"LiftKit Golden Ratio Example","excerpt":"黄金比（φ ≈ 1.618）に基づいてUIを自動生成するNext.js UIフレームワーク「LiftKit」のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"ja","title":"Remotion 入門ガイド","excerpt":"Remotionを使用した動画作成のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

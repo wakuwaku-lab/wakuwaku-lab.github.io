@@ -1,0 +1,311 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-playwright-test-agents-example","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-playwright-test-agents-example","d"],{"children":["__PAGE__?{\"id\":\"repo-playwright-test-agents-example\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-playwright-test-agents-example","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T7b3,
+# Playwright Test Agents Example
+
+## Overview
+
+## Prerequisites
+
+- Node.js 18+ (recommended 20+)
+- Git
+- VS Code or Cursor
+
+## Installation
+
+```bash
+cd playwright-test-agents-example
+npm install
+npx playwright install chromium
+```
+
+## Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with visible browser
+npm run test:headed
+
+# Run tests in UI mode
+npm run test:ui
+
+# Run tests in debug mode
+npm run test:debug
+
+# Show test report
+npm run test:report
+```
+
+## Project Structure
+
+```
+playwright-test-agents-example/
+├── src/
+│   ├── pages/              # Page Object Models
+│   │   └── ExamplePage.ts
+│   ├── fixtures/           # Test fixtures
+│   │   └── test-data.ts
+│   └── mcp/                # MCP integration examples
+│       └── figma-mcp.ts
+├── tests/                  # Test files
+│   ├── basic.spec.ts
+│   └── page-object.spec.ts
+├── package.json
+├── playwright.config.ts
+└── tsconfig.json
+```
+
+## Key Concepts Demonstrated
+
+### 1. Robust Selector Strategy
+```typescript
+const element = page.locator('[data-testid="primary-id"]')
+  .or(page.locator('[data-cy="fallback-id"]'))
+  .or(page.locator('text=visible-text'));
+```
+
+### 2. Wait Strategies
+```typescript
+await page.waitForLoadState('networkidle');
+await expect(element).toBeVisible({ timeout: 10000 });
+```
+
+### 3. Page Object Model
+```typescript
+export class ExamplePage extends BasePage {
+  async navigate() {
+    await this.page.goto('https://example.com');
+    await this.waitForStableState();
+  }
+}
+```
+
+### 4. MCP Integration
+```typescript
+const figmaClient = new FigmaMCPClient();
+const components = await figmaClient.getComponents(fileKey);
+```
+
+## Initialize Agents (Optional)
+
+```bash
+npm run init-agents
+```
+
+This sets up the AI agent loop for VS Code.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T7b3,
+# Playwright Test Agents Example
+
+## Overview
+
+## Prerequisites
+
+- Node.js 18+ (recommended 20+)
+- Git
+- VS Code or Cursor
+
+## Installation
+
+```bash
+cd playwright-test-agents-example
+npm install
+npx playwright install chromium
+```
+
+## Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with visible browser
+npm run test:headed
+
+# Run tests in UI mode
+npm run test:ui
+
+# Run tests in debug mode
+npm run test:debug
+
+# Show test report
+npm run test:report
+```
+
+## Project Structure
+
+```
+playwright-test-agents-example/
+├── src/
+│   ├── pages/              # Page Object Models
+│   │   └── ExamplePage.ts
+│   ├── fixtures/           # Test fixtures
+│   │   └── test-data.ts
+│   └── mcp/                # MCP integration examples
+│       └── figma-mcp.ts
+├── tests/                  # Test files
+│   ├── basic.spec.ts
+│   └── page-object.spec.ts
+├── package.json
+├── playwright.config.ts
+└── tsconfig.json
+```
+
+## Key Concepts Demonstrated
+
+### 1. Robust Selector Strategy
+```typescript
+const element = page.locator('[data-testid="primary-id"]')
+  .or(page.locator('[data-cy="fallback-id"]'))
+  .or(page.locator('text=visible-text'));
+```
+
+### 2. Wait Strategies
+```typescript
+await page.waitForLoadState('networkidle');
+await expect(element).toBeVisible({ timeout: 10000 });
+```
+
+### 3. Page Object Model
+```typescript
+export class ExamplePage extends BasePage {
+  async navigate() {
+    await this.page.goto('https://example.com');
+    await this.waitForStableState();
+  }
+}
+```
+
+### 4. MCP Integration
+```typescript
+const figmaClient = new FigmaMCPClient();
+const components = await figmaClient.getComponents(fileKey);
+```
+
+## Initialize Agents (Optional)
+
+```bash
+npm run init-agents
+```
+
+This sets up the AI agent loop for VS Code.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T7b3,
+# Playwright Test Agents Example
+
+## Overview
+
+## Prerequisites
+
+- Node.js 18+ (recommended 20+)
+- Git
+- VS Code or Cursor
+
+## Installation
+
+```bash
+cd playwright-test-agents-example
+npm install
+npx playwright install chromium
+```
+
+## Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with visible browser
+npm run test:headed
+
+# Run tests in UI mode
+npm run test:ui
+
+# Run tests in debug mode
+npm run test:debug
+
+# Show test report
+npm run test:report
+```
+
+## Project Structure
+
+```
+playwright-test-agents-example/
+├── src/
+│   ├── pages/              # Page Object Models
+│   │   └── ExamplePage.ts
+│   ├── fixtures/           # Test fixtures
+│   │   └── test-data.ts
+│   └── mcp/                # MCP integration examples
+│       └── figma-mcp.ts
+├── tests/                  # Test files
+│   ├── basic.spec.ts
+│   └── page-object.spec.ts
+├── package.json
+├── playwright.config.ts
+└── tsconfig.json
+```
+
+## Key Concepts Demonstrated
+
+### 1. Robust Selector Strategy
+```typescript
+const element = page.locator('[data-testid="primary-id"]')
+  .or(page.locator('[data-cy="fallback-id"]'))
+  .or(page.locator('text=visible-text'));
+```
+
+### 2. Wait Strategies
+```typescript
+await page.waitForLoadState('networkidle');
+await expect(element).toBeVisible({ timeout: 10000 });
+```
+
+### 3. Page Object Model
+```typescript
+export class ExamplePage extends BasePage {
+  async navigate() {
+    await this.page.goto('https://example.com');
+    await this.waitForStableState();
+  }
+}
+```
+
+### 4. MCP Integration
+```typescript
+const figmaClient = new FigmaMCPClient();
+const components = await figmaClient.getComponents(fileKey);
+```
+
+## Initialize Agents (Optional)
+
+```bash
+npm run init-agents
+```
+
+This sets up the AI agent loop for VS Code.
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-playwright-test-agents-example","repo":"playwright-test-agents-example","lang":"ja","title":"Playwright Test Agents Example","excerpt":"- Node.js 18+ (recommended 20+)","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/playwright-test-agents-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/playwright-test-agents-example/","html_url":"https://github.com/wakuwaku-lab/playwright-test-agents-example","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-playwright-test-agents-example","repo":"playwright-test-agents-example","lang":"zh","title":"Playwright Test Agents Example","excerpt":"- Node.js 18+ (recommended 20+)","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/playwright-test-agents-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/playwright-test-agents-example/","html_url":"https://github.com/wakuwaku-lab/playwright-test-agents-example","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-playwright-test-agents-example","repo":"playwright-test-agents-example","lang":"en","title":"Playwright Test Agents Example","excerpt":"- Node.js 18+ (recommended 20+)","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/playwright-test-agents-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/playwright-test-agents-example/","html_url":"https://github.com/wakuwaku-lab/playwright-test-agents-example","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-htmx-task-manager","repo":"htmx-task-manager","lang":"ja","title":"htmx Task Manager Demo","excerpt":"htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/htmx-task-manager","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/htmx-task-manager/","html_url":"https://github.com/wakuwaku-lab/htmx-task-manager","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

@@ -1,0 +1,227 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-pyautogui-demo","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-pyautogui-demo","d"],{"children":["__PAGE__?{\"id\":\"repo-pyautogui-demo\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-pyautogui-demo","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T806,
+# PyAutoGUI Demo
+
+A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.
+
+## Features Demonstrated
+
+- **Mouse Operations**: Move, click, drag, scroll
+- **Keyboard Operations**: Text input, special keys, hotkeys
+- **Screen Operations**: Screenshot capture, pixel color detection
+- **Message Boxes**: Alert, confirm, prompt, password dialogs
+- **Safety Features**: FAILSAFE, PAUSE settings
+- **Tween/Easing**: Smooth mouse movement animations
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+### Linux Dependencies
+
+```bash
+sudo apt-get install python3-xlib scrot python3-tk python3-dev
+```
+
+### macOS
+
+Grant accessibility permissions in System Preferences > Privacy & Security > Accessibility
+
+## Usage
+
+Run full demo:
+```bash
+python src/main.py
+```
+
+Run specific demo modes:
+```bash
+python src/main.py mouse     # Mouse operations only
+python src/main.py keyboard  # Keyboard operations only
+python src/main.py screen    # Screen operations only
+python src/main.py safety    # Safety features only
+```
+
+## Demo Modules
+
+| Module | Description |
+|--------|-------------|
+| `demo_mouse_movement()` | Move cursor to coordinates with optional duration |
+| `demo_mouse_click()` | Left, right, double clicks |
+| `demo_mouse_drag()` | Drag with left button held |
+| `demo_mouse_scroll()` | Scroll up/down |
+| `demo_keyboard_write()` | Type text strings |
+| `demo_keyboard_press()` | Press individual keys |
+| `demo_hotkey()` | Keyboard shortcuts (Ctrl+C, etc.) |
+| `demo_screenshot()` | Capture screen images |
+| `demo_pixel_info()` | Get pixel colors |
+| `demo_message_boxes()` | Show dialogs |
+| `demo_safety_features()` | FAILSAFE and PAUSE |
+| `demo_tween_easing()` | Smooth animations |
+
+## Safety Notes
+
+- **FAILSAFE**: Move mouse to top-left corner (0,0) to stop execution
+- **PAUSE**: Add delay between operations to prevent runaway scripts
+- Always test in a safe environment first
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T806,
+# PyAutoGUI Demo
+
+A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.
+
+## Features Demonstrated
+
+- **Mouse Operations**: Move, click, drag, scroll
+- **Keyboard Operations**: Text input, special keys, hotkeys
+- **Screen Operations**: Screenshot capture, pixel color detection
+- **Message Boxes**: Alert, confirm, prompt, password dialogs
+- **Safety Features**: FAILSAFE, PAUSE settings
+- **Tween/Easing**: Smooth mouse movement animations
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+### Linux Dependencies
+
+```bash
+sudo apt-get install python3-xlib scrot python3-tk python3-dev
+```
+
+### macOS
+
+Grant accessibility permissions in System Preferences > Privacy & Security > Accessibility
+
+## Usage
+
+Run full demo:
+```bash
+python src/main.py
+```
+
+Run specific demo modes:
+```bash
+python src/main.py mouse     # Mouse operations only
+python src/main.py keyboard  # Keyboard operations only
+python src/main.py screen    # Screen operations only
+python src/main.py safety    # Safety features only
+```
+
+## Demo Modules
+
+| Module | Description |
+|--------|-------------|
+| `demo_mouse_movement()` | Move cursor to coordinates with optional duration |
+| `demo_mouse_click()` | Left, right, double clicks |
+| `demo_mouse_drag()` | Drag with left button held |
+| `demo_mouse_scroll()` | Scroll up/down |
+| `demo_keyboard_write()` | Type text strings |
+| `demo_keyboard_press()` | Press individual keys |
+| `demo_hotkey()` | Keyboard shortcuts (Ctrl+C, etc.) |
+| `demo_screenshot()` | Capture screen images |
+| `demo_pixel_info()` | Get pixel colors |
+| `demo_message_boxes()` | Show dialogs |
+| `demo_safety_features()` | FAILSAFE and PAUSE |
+| `demo_tween_easing()` | Smooth animations |
+
+## Safety Notes
+
+- **FAILSAFE**: Move mouse to top-left corner (0,0) to stop execution
+- **PAUSE**: Add delay between operations to prevent runaway scripts
+- Always test in a safe environment first
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T806,
+# PyAutoGUI Demo
+
+A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.
+
+## Features Demonstrated
+
+- **Mouse Operations**: Move, click, drag, scroll
+- **Keyboard Operations**: Text input, special keys, hotkeys
+- **Screen Operations**: Screenshot capture, pixel color detection
+- **Message Boxes**: Alert, confirm, prompt, password dialogs
+- **Safety Features**: FAILSAFE, PAUSE settings
+- **Tween/Easing**: Smooth mouse movement animations
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+### Linux Dependencies
+
+```bash
+sudo apt-get install python3-xlib scrot python3-tk python3-dev
+```
+
+### macOS
+
+Grant accessibility permissions in System Preferences > Privacy & Security > Accessibility
+
+## Usage
+
+Run full demo:
+```bash
+python src/main.py
+```
+
+Run specific demo modes:
+```bash
+python src/main.py mouse     # Mouse operations only
+python src/main.py keyboard  # Keyboard operations only
+python src/main.py screen    # Screen operations only
+python src/main.py safety    # Safety features only
+```
+
+## Demo Modules
+
+| Module | Description |
+|--------|-------------|
+| `demo_mouse_movement()` | Move cursor to coordinates with optional duration |
+| `demo_mouse_click()` | Left, right, double clicks |
+| `demo_mouse_drag()` | Drag with left button held |
+| `demo_mouse_scroll()` | Scroll up/down |
+| `demo_keyboard_write()` | Type text strings |
+| `demo_keyboard_press()` | Press individual keys |
+| `demo_hotkey()` | Keyboard shortcuts (Ctrl+C, etc.) |
+| `demo_screenshot()` | Capture screen images |
+| `demo_pixel_info()` | Get pixel colors |
+| `demo_message_boxes()` | Show dialogs |
+| `demo_safety_features()` | FAILSAFE and PAUSE |
+| `demo_tween_easing()` | Smooth animations |
+
+## Safety Notes
+
+- **FAILSAFE**: Move mouse to top-left corner (0,0) to stop execution
+- **PAUSE**: Add delay between operations to prevent runaway scripts
+- Always test in a safe environment first
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-pyautogui-demo","repo":"pyautogui-demo","lang":"ja","title":"PyAutoGUI Demo","excerpt":"A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/pyautogui-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"Python","tags":["Python"],"homepage":"https://wakuwaku-lab.github.io/pyautogui-demo/","html_url":"https://github.com/wakuwaku-lab/pyautogui-demo","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-pyautogui-demo","repo":"pyautogui-demo","lang":"zh","title":"PyAutoGUI Demo","excerpt":"A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/pyautogui-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"Python","tags":["Python"],"homepage":"https://wakuwaku-lab.github.io/pyautogui-demo/","html_url":"https://github.com/wakuwaku-lab/pyautogui-demo","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-pyautogui-demo","repo":"pyautogui-demo","lang":"en","title":"PyAutoGUI Demo","excerpt":"A comprehensive demonstration of PyAutoGUI - Python library for GUI automation.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/pyautogui-demo","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"Python","tags":["Python"],"homepage":"https://wakuwaku-lab.github.io/pyautogui-demo/","html_url":"https://github.com/wakuwaku-lab/pyautogui-demo","slide_url":""},"content":"$a"}},"relatedPosts":[],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

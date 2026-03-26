@@ -1,0 +1,367 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-remotion-beginner-guide","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-remotion-beginner-guide","d"],{"children":["__PAGE__?{\"id\":\"repo-remotion-beginner-guide\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-remotion-beginner-guide","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:Tb13,
+# Remotion 入門ガイド
+
+Remotionを使用した動画作成のサンプルプロジェクトです。
+
+## Remotionとは
+
+Remotionは、Reactを使ってプログラムで動画を作成できるツールです。パラメータによる動画生成、テンプレートベースの大量生産、サーバーサイドレンダリングワークフローなどが可能です。
+
+## 前提条件
+
+- Node.js (v18以上)
+- npm または yarn
+
+## インストール
+
+```bash
+cd remotion-beginner-guide
+npm install
+```
+
+## 使い方
+
+### 開発プレビュー
+
+開発サーバーを起動して動画をプレビューします：
+
+```bash
+npm run dev
+```
+
+### MP4にレンダリング
+
+MP4ファイルとして動画をエクスポートします：
+
+```bash
+npm run build
+```
+
+または、Remotion CLIを直接使用します：
+
+```bash
+# 日本語バージョン
+npx remotion render HelloWorld out/video-ja.mp4
+
+# 英語バージョン
+npx remotion render HelloWorldEn out/video-en.mp4
+
+# 中国語バージョン
+npx remotion render HelloWorldZh out/video-zh.mp4
+```
+
+出力は `out/` ディレクトリに保存されます。
+
+## i18n（多言語対応）
+
+このプロジェクトは3つの言語をサポートしています：
+
+- **日本語 (ja)** - デフォルト
+- **英語 (en)**
+- **中国語 (zh)**
+
+言語ファイルは `src/i18n/` ディレクトリにあります：
+
+```
+src/i18n/
+├── ja.json  # 日本語（デフォルト）
+├── en.json  # 英語
+└── zh.json  # 中国語
+```
+
+### コンポーネントでi18nを使用
+
+```typescript
+import { getTranslations, Language } from "./i18n";
+
+interface Props {
+  lang?: Language;
+}
+
+export const MyComponent: React.FC<Props> = ({ lang = "ja" }) => {
+  const t = getTranslations(lang);
+  return <h1>{t.title}</h1>;
+};
+```
+
+## プロジェクト構造
+
+```
+remotion-beginner-guide/
+├── src/
+│   ├── HelloRemotion.tsx   # メイン動画コンポーネント
+│   ├── root.tsx            # エントリーポイント
+│   └── i18n/
+│       ├── index.ts        # i18nユーティリティ
+│       ├── ja.json        # 日本語翻訳
+│       ├── en.json        # 英語翻訳
+│       └── zh.json        # 中国語翻訳
+├── package.json
+├── tsconfig.json
+└── remotion.config.ts     # Remotion設定
+```
+
+## 主なコンセプト
+
+- **useCurrentFrame()**: 動画内の現在のフレーム番号を取得
+- **interpolate()**: ある範囲から別の範囲に値をマッピング（例：フレームから不透明度へ）
+- **spring()**: バネ物理ベースのアニメーション
+
+## ライセンス
+
+MIT
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Project:** [remotion-beginner-guide](https://wakuwaku-lab.github.io/remotion-beginner-guide)
+
+9:T973,
+# Remotion 入门指南
+
+使用Remotion创建视频的示例项目。
+
+## 什么是Remotion？
+
+Remotion是一个允许您使用React编程创建视频的工具。它支持参数化视频生成、基于模板的批量生产以及服务端渲染工作流。
+
+## 前提条件
+
+- Node.js (v18或更高版本)
+- npm 或 yarn
+
+## 安装
+
+```bash
+cd remotion-beginner-guide
+npm install
+```
+
+## 使用方法
+
+### 开发预览
+
+启动开发服务器以预览您的视频：
+
+```bash
+npm run dev
+```
+
+### 渲染为MP4
+
+将视频导出为MP4文件：
+
+```bash
+npm run build
+```
+
+或直接使用Remotion CLI：
+
+```bash
+# 日语版本
+npx remotion render HelloWorld out/video-ja.mp4
+
+# 英语版本
+npx remotion render HelloWorldEn out/video-en.mp4
+
+# 中文版本
+npx remotion render HelloWorldZh out/video-zh.mp4
+```
+
+输出将保存在 `out/` 目录中。
+
+## i18n（多语言支持）
+
+此项目支持三种语言：
+
+- **日语 (ja)** - 默认
+- **英语 (en)**
+- **中文 (zh)**
+
+语言文件位于 `src/i18n/` 目录：
+
+```
+src/i18n/
+├── ja.json  # 日语（默认）
+├── en.json  # 英语
+└── zh.json  # 中文
+```
+
+### 在组件中使用i18n
+
+```typescript
+import { getTranslations, Language } from "./i18n";
+
+interface Props {
+  lang?: Language;
+}
+
+export const MyComponent: React.FC<Props> = ({ lang = "ja" }) => {
+  const t = getTranslations(lang);
+  return <h1>{t.title}</h1>;
+};
+```
+
+## 项目结构
+
+```
+remotion-beginner-guide/
+├── src/
+│   ├── HelloRemotion.tsx   # 主视频组件
+│   ├── root.tsx            # 入口点
+│   └── i18n/
+│       ├── index.ts        # i18n工具
+│       ├── ja.json         # 日语翻译
+│       ├── en.json         # 英语翻译
+│       └── zh.json         # 中文翻译
+├── package.json
+├── tsconfig.json
+└── remotion.config.ts     # Remotion配置
+```
+
+## 核心概念
+
+- **useCurrentFrame()**: 获取视频中的当前帧号
+- **interpolate()**: 将值从一个范围映射到另一个范围（例如：帧到不透明度）
+- **spring()**: 基于弹簧物理的动画
+
+## 许可证
+
+MIT
+
+---
+
+**作者:** [exia.huang](https://github.com/exiahuang)  
+**项目:** [remotion-beginner-guide](https://wakuwaku-lab.github.io/remotion-beginner-guide)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T985,
+# Remotion Beginner Guide
+
+A sample project for creating videos using Remotion.
+
+## What is Remotion?
+
+Remotion is a tool that allows you to create videos programmatically using React. It enables video generation with parameters, template-based mass production, and server-side rendering workflows.
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+## Installation
+
+```bash
+cd remotion-beginner-guide
+npm install
+```
+
+## Usage
+
+### Development Preview
+
+Start the development server to preview your video:
+
+```bash
+npm run dev
+```
+
+### Render to MP4
+
+Export your video as an MP4 file:
+
+```bash
+npm run build
+```
+
+Or use the Remotion CLI directly:
+
+```bash
+# Japanese version
+npx remotion render HelloWorld out/video-ja.mp4
+
+# English version
+npx remotion render HelloWorldEn out/video-en.mp4
+
+# Chinese version
+npx remotion render HelloWorldZh out/video-zh.mp4
+```
+
+The output will be saved to the `out/` directory.
+
+## i18n (Multi-language Support)
+
+This project supports three languages:
+
+- **Japanese (ja)** - Default
+- **English (en)**
+- **Chinese (zh)**
+
+Language files are located in `src/i18n/`:
+
+```
+src/i18n/
+├── ja.json  # Japanese (default)
+├── en.json  # English
+└── zh.json  # Chinese
+```
+
+### Using i18n in Components
+
+```typescript
+import { getTranslations, Language } from "./i18n";
+
+interface Props {
+  lang?: Language;
+}
+
+export const MyComponent: React.FC<Props> = ({ lang = "ja" }) => {
+  const t = getTranslations(lang);
+  return <h1>{t.title}</h1>;
+};
+```
+
+## Project Structure
+
+```
+remotion-beginner-guide/
+├── src/
+│   ├── HelloRemotion.tsx   # Main video component
+│   ├── root.tsx            # Entry point
+│   └── i18n/
+│       ├── index.ts        # i18n utility
+│       ├── ja.json         # Japanese translations
+│       ├── en.json         # English translations
+│       └── zh.json         # Chinese translations
+├── package.json
+├── tsconfig.json
+└── remotion.config.ts     # Remotion configuration
+```
+
+## Key Concepts
+
+- **useCurrentFrame()**: Gets the current frame number in the video
+- **interpolate()**: Maps a value from one range to another (e.g., frame to opacity)
+- **spring()**: Spring physics-based animation
+
+## License
+
+MIT
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Project:** [remotion-beginner-guide](https://github.com/wakuwaku-lab/remotion-beginner-guide)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"ja","title":"Remotion 入門ガイド","excerpt":"Remotionを使用した動画作成のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"zh","title":"Remotion 入门指南","excerpt":"使用Remotion创建视频的示例项目。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"en","title":"Remotion Beginner Guide","excerpt":"A sample project for creating videos using Remotion.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-station-property-search","repo":"station-property-search","lang":"ja","title":"station-property-search","excerpt":"最寄り駅から指定時間内で到達可能な物件を地図上に表示するアプリケーション","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"ja","title":"LiftKit Golden Ratio Example","excerpt":"黄金比（φ ≈ 1.618）に基づいてUIを自動生成するNext.js UIフレームワーク「LiftKit」のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"ja","title":"Redocly + OpenAPI サンプル","excerpt":"このプロジェクトでは、RedoclyとOpenAPI仕様を使用して美しいAPIドキュメントを生成する方法を説明します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

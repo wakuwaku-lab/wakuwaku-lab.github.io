@@ -1,0 +1,422 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-claude-notion-mcp-jobposting","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-claude-notion-mcp-jobposting","d"],{"children":["__PAGE__?{\"id\":\"repo-claude-notion-mcp-jobposting\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-claude-notion-mcp-jobposting","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:Tf7f,
+# Claude Code × Notion MCP 求人票作成デモ
+
+このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づいて作成されました。
+
+## 概要
+
+このデモは、企業名と既存求人のURLを入力すると、Notionから企業情報を自動取得し、求人票ドラフトを生成するワークフローを再現しています。
+
+### 主な機能
+
+- Notionからの企業情報自動取得
+- 既存求人情報の取得
+- 求人票ドラフトの自動生成
+- 確認が必要な項目の明確化
+
+## 必要環境
+
+- Node.js 18以上
+- npm
+
+## インストール
+
+```bash
+npm install
+```
+
+## 実行方法
+
+### インタラクティブモード
+
+```bash
+npm start
+```
+
+### デモモード（自動実行）
+
+```bash
+npm run demo
+```
+
+## 出力例
+
+```
+===========================================
+   求人票作成アシスタント v1.0 (Demo Mode)
+===========================================
+
+求人票作成を開始します。
+
+企業名を入力してください:
+> ABC株式会社
+
+既存求人のURLを入力してください:
+> https://ai-career.findy-code.io/companies/abc/jobs/001
+
+🔍 Notionから ABC株式会社 の情報を検索します...
+
+✅ 求人票ドラフトを作成しました！
+📁 保存先: src/drafts/ABC_____jobposting_xxx.md
+
+【生成された求人票】
+
+# 求人票: ABC株式会社
+
+## 基本情報
+- 職種: AIエンジニア
+- 年収: 年収 600万円〜1000万円
+
+## 技術スタック
+- Python
+- React
+- AWS
+- TensorFlow
+
+## 確認が必要な項目
+- 生成AI活用ラベル: 4つの選択肢から確認が必要
+- AI活用に対する評価制度: 既存求人に記載なし
+```
+
+## プロジェクト構造
+
+```
+claude-notion-mcp-jobposting/
+├── .claude/
+│   ├── CLAUDE.md          # カスタムスラッシュコマンド定義
+│   └── claude.json        # MCP設定
+├── src/
+│   ├── index.js           # メインスクリプト
+│   ├── data/
+│   │   └── companies.json # 企業データ
+│   ├── drafts/            # 生成された求人票
+│   └── setup.sh           # セットアップスクリプト
+├── docs/                  # スライド資料
+├── package.json
+└── README.md
+```
+
+## アーキテクチャ
+
+### カスタムスラッシュコマンド
+
+`.claude/CLAUDE.md`に定義されたカスタムスラッシュコマンド `/create-job-posting` を使用することで、Claude Code上で対話的に求人票を作成できます。
+
+### MCP（Model Context Protocol）
+
+Notion MCPを使用することで、Claude CodeがNotionのデータベースにアクセスし、企業情報を自動取得します。
+
+### プロンプト設計の工夫
+
+- **「雰囲気で書かない」原則**: 情報がない項目は推測で埋めず、「確認が必要な項目」としてリストアップ
+- **既存求人からの情報取得**: API経由で正確にコピー
+- **暗黙知のコード化**: メンバーごとに異なる判断基準をプロンプトに明記
+
+## 実際のClaude Codeでの使用
+
+1. Claude Codeをインストール
+2. Notion APIキーを取得・設定
+3. MCPを設定
+4. `/create-job-posting`コマンドを実行
+
+詳細については [Findy Tech Blog](https://tech.findy.co.jp/entry/2026/03/17/070000) を参照してください。
+
+## ライセンス
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting](https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:Td05,
+# Claude Code × Notion MCP 招聘单创建演示
+
+此项目是结合Claude Code和Notion MCP实现业务自动化的演示。参考Findy Tech Blog的文章「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」创建。
+
+## 概述
+
+此演示重现了输入企业名称和现有招聘信息的URL后，从Notion自动获取企业信息并生成招聘单草案的工作流程。
+
+### 主要功能
+
+- 从Notion自动获取企业信息
+- 获取现有招聘信息
+- 自动生成招聘单草案
+- 明确标注需要确认的项目
+
+## 环境要求
+
+- Node.js 18以上
+- npm
+
+## 安装
+
+```bash
+npm install
+```
+
+## 运行方法
+
+### 交互模式
+
+```bash
+npm start
+```
+
+### 演示模式（自动运行）
+
+```bash
+npm run demo
+```
+
+## 输出示例
+
+```
+===========================================
+   招聘单创建助手 v1.0 (Demo Mode)
+===========================================
+
+开始创建招聘单。
+
+请输入企业名称:
+> ABC株式会社
+
+请输入现有招聘信息的URL:
+> https://ai-career.findy-code.io/companies/abc/jobs/001
+
+🔍 正在从Notion搜索 ABC株式会社 的信息...
+
+✅ 招聘单草案已创建！
+📁 保存位置: src/drafts/ABC_____jobposting_xxx.md
+
+【生成的招聘单】
+
+# 招聘单: ABC株式会社
+
+## 基本信息
+- 职位: AI工程师
+- 年薪: 年薪 600万日元〜1000万日元
+
+## 技术栈
+- Python
+- React
+- AWS
+- TensorFlow
+
+## 需要确认的项目
+- 生成AI使用标签: 需要从4个选项中确认
+- AI使用评估制度: 现有招聘信息中未记载
+```
+
+## 项目结构
+
+```
+claude-notion-mcp-jobposting/
+├── .claude/
+│   ├── CLAUDE.md          # 自定义斜杠命令定义
+│   └── claude.json        # MCP配置
+├── src/
+│   ├── index.js           # 主脚本
+│   ├── data/
+│   │   └── companies.json # 企业数据
+│   ├── drafts/            # 生成的招聘单
+│   └── setup.sh           # 设置脚本
+├── docs/                  # 幻灯片资料
+├── package.json
+└── README.md
+```
+
+## 架构
+
+### 自定义斜杠命令
+
+使用`.claude/CLAUDE.md`中定义的自定义斜杠命令 `/create-job-posting`，可以在Claude Code上通过对话创建招聘单。
+
+### MCP（Model Context Protocol）
+
+通过使用Notion MCP，Claude Code可以访问Notion的数据库，自动获取企业信息。
+
+### 提示词设计要点
+
+- **「不凭感觉写」原则**: 没有信息的项目不推测填写，而是列为「需要确认的项目」
+- **从现有招聘信息获取**: 通过API准确复制
+- **隐性知识的代码化**: 将因人而异的判断标准明确写入提示词
+
+## 在实际Claude Code中使用
+
+1. 安装Claude Code
+2. 获取并设置Notion API密钥
+3. 配置MCP
+4. 执行 `/create-job-posting` 命令
+
+详细请参考 [Findy Tech Blog](https://tech.findy.co.jp/entry/2026/03/17/070000)。
+
+## 许可证
+
+MIT
+
+---
+
+作者: [https://github.com/exiahuang](https://github.com/exiahuang)
+组织: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+项目: [https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting](https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:Tdd3,
+# Claude Code × Notion MCP Job Posting Demo
+
+This project is a demo of business automation combining Claude Code and Notion MCP. Created based on the Findy Tech Blog article "1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌".
+
+## Overview
+
+This demo recreates the workflow of entering a company name and existing job posting URL, automatically fetching company information from Notion, and generating a job posting draft.
+
+### Key Features
+
+- Automatic company information retrieval from Notion
+- Fetch existing job posting information
+- Automatic job posting draft generation
+- Clear identification of items requiring confirmation
+
+## Requirements
+
+- Node.js 18+
+- npm
+
+## Installation
+
+```bash
+npm install
+```
+
+## Usage
+
+### Interactive Mode
+
+```bash
+npm start
+```
+
+### Demo Mode (Automatic)
+
+```bash
+npm run demo
+```
+
+## Example Output
+
+```
+===========================================
+   Job Posting Assistant v1.0 (Demo Mode)
+===========================================
+
+Starting job posting creation.
+
+Enter company name:
+> ABC株式会社
+
+Enter existing job posting URL:
+> https://ai-career.findy-code.io/companies/abc/jobs/001
+
+🔍 Searching Notion for ABC株式会社...
+
+✅ Job posting draft created!
+📁 Saved to: src/drafts/ABC_____jobposting_xxx.md
+
+【Generated Job Posting】
+
+# Job Posting: ABC株式会社
+
+## Basic Information
+- Position: AI Engineer
+- Salary: ¥6,000,000 - ¥10,000,000
+
+## Tech Stack
+- Python
+- React
+- AWS
+- TensorFlow
+
+## Items Requiring Confirmation
+- Generative AI usage label: Needs confirmation from 4 options
+- AI usage evaluation system: Not in existing posting
+```
+
+## Project Structure
+
+```
+claude-notion-mcp-jobposting/
+├── .claude/
+│   ├── CLAUDE.md          # Custom slash command definition
+│   └── claude.json        # MCP configuration
+├── src/
+│   ├── index.js           # Main script
+│   ├── data/
+│   │   └── companies.json # Company data
+│   ├── drafts/            # Generated job postings
+│   └── setup.sh           # Setup script
+├── docs/                  # Slide materials
+├── package.json
+└── README.md
+```
+
+## Architecture
+
+### Custom Slash Command
+
+Using the custom slash command `/create-job-posting` defined in `.claude/CLAUDE.md`, you can interactively create job postings within Claude Code.
+
+### MCP (Model Context Protocol)
+
+Using Notion MCP, Claude Code can access Notion databases and automatically retrieve company information.
+
+### Prompt Design Principles
+
+- **"Don't guess" principle**: Items without information are not filled in with guesses, but listed as "Items Requiring Confirmation"
+- **Information from existing postings**: Accurately copied via API
+- **Codifying tacit knowledge**: Explicitly stating judgment criteria that varied between team members
+
+## Using with Actual Claude Code
+
+1. Install Claude Code
+2. Get and set Notion API key
+3. Configure MCP
+4. Execute `/create-job-posting` command
+
+See [Findy Tech Blog](https://tech.findy.co.jp/entry/2026/03/17/070000) for details.
+
+## License
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting](https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"ja","title":"Claude Code × Notion MCP 求人票作成デモ","excerpt":"このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"zh","title":"Claude Code × Notion MCP 招聘单创建演示","excerpt":"此项目是结合Claude Code和Notion MCP实现业务自动化的演示。参考Findy Tech Blog的文章「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」创建。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"en","title":"Claude Code × Notion MCP Job Posting Demo","excerpt":"This project is a demo of business automation combining Claude Code and Notion MCP. Created based on the Findy Tech Blog","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"ja","title":"ピアノ楽譜プレイヤー","excerpt":"Reactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/ja/"},{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"ja","title":"AI Agent Closed Loop","excerpt":"AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"ja","title":"Agentic Project Template","excerpt":"Claude Codeのエージェンティックエンジニアリングを実証するテンプレートプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

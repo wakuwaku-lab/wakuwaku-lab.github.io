@@ -1,0 +1,250 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-station-property-search","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-station-property-search","d"],{"children":["__PAGE__?{\"id\":\"repo-station-property-search\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-station-property-search","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T88f,
+# station-property-search
+
+最寄り駅から指定時間内で到達可能な物件を地図上に表示するアプリケーション
+
+## 概要
+
+このアプリケーションは、最寄り駅と交通手段（徒歩・自転車・車）、所要時間を指定することで、その条件に当てはまる物件を地図上にピンを刺して表示します。
+
+元記事: [【個人開発】最寄り駅から徒歩X分以内の物件を地図上に列挙できるアプリを作ってみた](https://qiita.com/nu197ma/items/bc9aee9c5951e01ad13b)
+
+## 機能
+
+- 駅名入力（自動補完）
+- 交通手段選択（徒歩・自転車・車）
+- 所要時間設定（1-60分）
+- 地図上的到達可能範囲の表示
+- 物件マーカーとルート表示
+- 物件リスト表示
+
+## 技術スタック
+
+- React 18 + TypeScript
+- Vite
+- Leaflet (react-leaflet)
+- OSRM Routing API
+
+##  설치
+
+```bash
+cd station-property-search
+npm install
+```
+
+## 실행
+
+```bash
+npm run dev
+```
+
+ブラウザで http://localhost:5173 を開きます。
+
+## 使用方法
+
+1. 最寄りの駅名を入力してください（例：新宿駅、渋谷駅）
+2. 交通手段を選択してください（徒歩・自転車・車）
+3. 所要時間を入力してください（分）
+4. 「検索」ボタンをクリックすると、条件に一致する物件が地図とリストに表示されます
+5. 物件をクリックすると、駅からのルートが表示されます
+
+## デモ
+
+![Demo](https://example.com/demo.png)
+
+## アーキテクチャ
+
+```
+src/
+├── main.tsx       # エントリーポイント
+├── App.tsx        # メインコンポーネント
+├── index.css      # スタイル
+└── vite-env.d.ts  # 型定義
+```
+
+## ライセンス
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/station-property-search](https://wakuwaku-lab.github.io/station-property-search)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T742,
+# station-property-search
+
+在地图上显示从最近车站可在指定时间内到达的房产的Web应用程序。
+
+## 概述
+
+此应用程序允许用户通过指定以下条件搜索租赁房产：
+- 最近的车站名称
+- 交通方式（步行、骑自行车、开车）
+- 出行时间（分钟）
+
+符合指定条件的房产将作为标记显示在地图上，并带有路线可视化。
+
+基于: [【個人開発】最寄り？谢邀X分以内の物件を地図上に列挙できるアプリを作ってみた](https://qiita.com/nu197ma/items/bc9aee9c5951e01ad13b)
+
+## 功能
+
+- 车站名称输入（带自动补全）
+- 交通方式选择（步行/自行车/汽车）
+- 可配置的出行时间（1-60分钟）
+- 地图上的可达区域可视化
+- 带路线显示的房产标记
+- 房产列表面板
+
+## 技术栈
+
+- React 18 + TypeScript
+- Vite
+- Leaflet (react-leaflet)
+- OSRM 路由API
+
+## 安装
+
+```bash
+cd station-property-search
+npm install
+```
+
+## 运行
+
+```bash
+npm run dev
+```
+
+在浏览器中打开 http://localhost:5173。
+
+## 使用方法
+
+1. 输入车站名称（例如：新宿、涩谷）
+2. 选择交通方式
+3. 设置出行时间（分钟）
+4. 点击"搜索"查找房产
+5. 点击房产查看从车站到该房产的路线
+
+## 架构
+
+```
+src/
+├── main.tsx       # 入口点
+├── App.tsx        # 主组件
+├── index.css      # 样式
+└── vite-env.d.ts  # 类型定义
+```
+
+## 许可证
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/station-property-search](https://wakuwaku-lab.github.io/station-property-search)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T786,
+# station-property-search
+
+A web application that displays properties reachable within a specified time from the nearest station on a map.
+
+## Overview
+
+This application allows users to search for rental properties by specifying:
+- Nearest station name
+- Transportation mode (walk, bicycle, car)
+- Travel time (in minutes)
+
+Properties within the specified criteria are displayed as markers on the map with route visualization.
+
+Based on: [【個人開発】最寄り？谢邀X分以内の物件を地図上に列挙できるアプリを作ってみた](https://qiita.com/nu197ma/items/bc9aee9c5951e01ad13b)
+
+## Features
+
+- Station name input with autocomplete
+- Transportation mode selection (walk/bicycle/car)
+- Configurable travel time (1-60 minutes)
+- Reachable area visualization on map
+- Property markers with route display
+- Property list panel
+
+## Tech Stack
+
+- React 18 + TypeScript
+- Vite
+- Leaflet (react-leaflet)
+- OSRM Routing API
+
+## Installation
+
+```bash
+cd station-property-search
+npm install
+```
+
+## Running
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173 in your browser.
+
+## Usage
+
+1. Enter a station name (e.g., Shinjuku, Shibuya)
+2. Select transportation mode
+3. Set travel time in minutes
+4. Click "Search" to find properties
+5. Click on a property to see the route from the station
+
+## Architecture
+
+```
+src/
+├── main.tsx       # Entry point
+├── App.tsx        # Main component
+├── index.css      # Styles
+└── vite-env.d.ts  # Type definitions
+```
+
+## License
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/station-property-search](https://wakuwaku-lab.github.io/station-property-search)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-station-property-search","repo":"station-property-search","lang":"ja","title":"station-property-search","excerpt":"最寄り駅から指定時間内で到達可能な物件を地図上に表示するアプリケーション","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-station-property-search","repo":"station-property-search","lang":"zh","title":"station-property-search","excerpt":"在地图上显示从最近车站可在指定时间内到达的房产的Web应用程序。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-station-property-search","repo":"station-property-search","lang":"en","title":"station-property-search","excerpt":"A web application that displays properties reachable within a specified time from the nearest station on a map.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/station-property-search","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/station-property-search","html_url":"https://github.com/wakuwaku-lab/station-property-search","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-liftkit-golden-ratio-example","repo":"liftkit-golden-ratio-example","lang":"ja","title":"LiftKit Golden Ratio Example","excerpt":"黄金比（φ ≈ 1.618）に基づいてUIを自動生成するNext.js UIフレームワーク「LiftKit」のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/liftkit-golden-ratio-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.12","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/liftkit-golden-ratio-example/","html_url":"https://github.com/wakuwaku-lab/liftkit-golden-ratio-example","slide_url":""},{"id":"repo-redocly-openapi-example","repo":"redocly-openapi-example","lang":"ja","title":"Redocly + OpenAPI サンプル","excerpt":"このプロジェクトでは、RedoclyとOpenAPI仕様を使用して美しいAPIドキュメントを生成する方法を説明します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/redocly-openapi-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/redocly-openapi-example/","html_url":"https://github.com/wakuwaku-lab/redocly-openapi-example","slide_url":""},{"id":"repo-remotion-beginner-guide","repo":"remotion-beginner-guide","lang":"ja","title":"Remotion 入門ガイド","excerpt":"Remotionを使用した動画作成のサンプルプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/remotion-beginner-guide","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.08","category":"TypeScript","tags":["TypeScript"],"homepage":"https://wakuwaku-lab.github.io/remotion-beginner-guide/","html_url":"https://github.com/wakuwaku-lab/remotion-beginner-guide","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

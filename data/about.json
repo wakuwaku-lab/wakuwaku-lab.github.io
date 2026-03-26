@@ -1,0 +1,30 @@
+[
+  {
+    "login": "wakuwaku-lab",
+    "type": "org",
+    "name": "wakuwaku-lab",
+    "bio": "",
+    "avatar_url": "https://avatars.githubusercontent.com/u/265674927?v=4",
+    "html_url": "https://github.com/wakuwaku-lab",
+    "blog": "",
+    "location": "",
+    "public_repos": 21,
+    "followers": 0,
+    "email": "",
+    "twitter_username": ""
+  },
+  {
+    "login": "exiahuang",
+    "type": "user",
+    "name": "Exia.huangxy",
+    "bio": "Salesforce, Python, Nodejs, Java,C,C# Developer\r\n\r\nワクワクLAB: https://github.com/wakuwaku-lab\r\n",
+    "avatar_url": "https://avatars.githubusercontent.com/u/16370780?v=4",
+    "html_url": "https://github.com/exiahuang",
+    "blog": "http://salesforcexytools.com",
+    "location": "Tokyo,Japan",
+    "public_repos": 119,
+    "followers": 28,
+    "email": "exia.huang@outlook.com",
+    "twitter_username": ""
+  }
+]

@@ -1,0 +1,392 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-ai-agent-closed-loop","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-ai-agent-closed-loop","d"],{"children":["__PAGE__?{\"id\":\"repo-ai-agent-closed-loop\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-ai-agent-closed-loop","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:Te5a,
+# AI Agent Closed Loop
+
+AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。
+
+## 概要
+
+このプロジェクトは、AIエージェントがフィードバックを収集し、自身の行動を自動的に調整する「クローズドループ」アーキテクチャの実装例です。
+
+### 主な機能
+
+- **ペルソナ設定**: SOUL.md でAIの性格、ルール、原則を定義
+- **メモリシステム**: 長期記憶と短期記憶の管理
+- **クローズドループフィードバック**: 実行結果から学習し、改善
+- **マルチチャネル対応**: Discord、Telegramに対応
+- **ツール統合**: Web検索、ファイル操作、コマンド実行等功能
+
+## 必要環境
+
+- Node.js 18.0.0以上
+
+## インストール
+
+```bash
+cd ai-agent-closed-loop
+npm install
+```
+
+## 実行
+
+```bash
+npm start
+```
+
+## 設定
+
+### SOUL.md (ペルソナ設定)
+
+AIのエージェントの性格と行動原則を定義します：
+
+```markdown
+# クロウ (Agent Name)
+
+## 性格
+- 礼儀正しい
+- 前向き
+
+## ルール
+- 用户的喜好を考慮する
+
+## 原則
+- 秘密情報を漏らさない
+```
+
+### USER.md (ユーザー設定)
+
+ユーザーごとの趣向やコンテキストを設定できます。
+
+### 環境変数
+
+```bash
+DISCORD_TOKEN=your_discord_token
+TELEGRAM_TOKEN=your_telegram_token
+```
+
+## 使用例
+
+```
+=== AI Agent Closed Loop System ===
+
+Agent: クロウ
+Model: claude-sonnet-4
+
+--- Test 1: シンプルクエリ ---
+[クロウ] Planning: こんにちは...
+Result: 処理が完了しました。
+
+--- Test 2: 検索クエリ ---
+[クロウ] Executing with tools: webSearch
+Result: 1/1 の操作が完了しました。
+
+--- Test 3: クローズドループフィードバック ---
+[クロウ] Adjusting based on feedback...
+```
+
+## アーキテクチャ
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│  Input      │────▶│  Planning    │────▶│  Execution  │
+│  (User)     │     │  (Intent)    │     │  (Tools)    │
+└─────────────┘     └──────────────┘     └─────────────┘
+                                               │
+                    ┌──────────────┐           │
+                    │  Adjustment  │◀──────────┘
+                    │  (Feedback)  │
+                    └──────────────┘
+                           │
+                    ┌──────────────┐
+                    │   Memory     │
+                    │  (Storage)   │
+                    └──────────────┘
+```
+
+### コンポーネント
+
+1. **ClosedLoopAgent**: メインのエージェントクラス
+2. **AgentMemory**: メモリ管理システム
+3. **ToolRegistry**: ツール登録・実行
+4. **FeedbackLoop**: フィードバック収集・分析
+5. **ChannelManager**: マルチチャネル管理
+
+## ライセンス
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/ai-agent-closed-loop](https://wakuwaku-lab.github.io/ai-agent-closed-loop)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:Tc07,
+# AI Agent Closed Loop
+
+演示AI代理闭环系统的项目。基于OpenClaw的概念。
+
+## 概述
+
+该项目实现了AI代理从反馈中学习并自动调整行为的"闭环"架构示例。
+
+### 主要功能
+
+- **角色设置**: 通过SOUL.md定义AI的性格、规则和原则
+- **记忆系统**: 长期和短期记忆管理
+- **闭环反馈**: 从执行结果中学习并改进
+- **多渠道支持**: 支持Discord、Telegram
+- **工具集成**: Web搜索、文件操作、命令执行等功能
+
+## 环境要求
+
+- Node.js 18.0.0 或更高版本
+
+## 安装
+
+```bash
+cd ai-agent-closed-loop
+npm install
+```
+
+## 运行
+
+```bash
+npm start
+```
+
+## 配置
+
+### SOUL.md (角色设置)
+
+定义AI代理的性格和行为原则：
+
+```markdown
+# 克劳 (Agent Name)
+
+## 性格
+- 有礼貌
+- 积极
+
+## 规则
+- 考虑用户偏好
+
+## 原则
+- 不泄露机密信息
+```
+
+### USER.md (用户设置)
+
+可以设置每个用户的偏好和上下文。
+
+### 环境变量
+
+```bash
+DISCORD_TOKEN=your_discord_token
+TELEGRAM_TOKEN=your_telegram_token
+```
+
+## 使用示例
+
+```
+=== AI Agent Closed Loop System ===
+
+Agent: 克劳
+Model: claude-sonnet-4
+
+--- Test 1: 简单查询 ---
+[克劳] Planning: 你好...
+Result: 处理完成。
+
+--- Test 2: 搜索查询 ---
+[克劳] Executing with tools: webSearch
+Result: 1/1 操作完成。
+
+--- Test 3: 闭环反馈 ---
+[克劳] Adjusting based on feedback...
+```
+
+## 架构
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│  Input      │────▶│  Planning    │────▶│  Execution  │
+│  (User)     │     │  (Intent)    │     │  (Tools)    │
+└─────────────┘     └──────────────┘     └─────────────┘
+                                               │
+                    ┌──────────────┐           │
+                    │  Adjustment  │◀──────────┘
+                    │  (Feedback)  │
+                    └──────────────┘
+                           │
+                    ┌──────────────┐
+                    │   Memory     │
+                    │  (Storage)   │
+                    └──────────────┘
+```
+
+### 组件
+
+1. **ClosedLoopAgent**: 主代理类
+2. **AgentMemory**: 内存管理系统
+3. **ToolRegistry**: 工具注册和执行
+4. **FeedbackLoop**: 反馈收集和分析
+5. **ChannelManager**: 多渠道管理
+
+## 许可证
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/ai-agent-closed-loop](https://wakuwaku-lab.github.io/ai-agent-closed-loop)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:Tcfc,
+# AI Agent Closed Loop
+
+A project demonstrating an AI agent closed-loop system. Based on OpenClaw concepts.
+
+## Overview
+
+This project implements an example of "closed-loop" architecture where AI agents learn from feedback and automatically adjust their behavior.
+
+### Key Features
+
+- **Persona Configuration**: Define AI personality, rules, and principles in SOUL.md
+- **Memory System**: Long-term and short-term memory management
+- **Closed-Loop Feedback**: Learn from execution results and improve
+- **Multi-Channel Support**: Discord, Telegram integration
+- **Tool Integration**: Web search, file operations, command execution
+
+## Requirements
+
+- Node.js 18.0.0 or higher
+
+## Installation
+
+```bash
+cd ai-agent-closed-loop
+npm install
+```
+
+## Run
+
+```bash
+npm start
+```
+
+## Configuration
+
+### SOUL.md (Persona Configuration)
+
+Define the AI agent's personality and behavioral principles:
+
+```markdown
+# Crow (Agent Name)
+
+## Personality
+- Polite
+- Positive
+
+## Rules
+- Consider user preferences
+
+## Principles
+- Never leak confidential information
+```
+
+### USER.md (User Settings)
+
+Set user preferences and context.
+
+### Environment Variables
+
+```bash
+DISCORD_TOKEN=your_discord_token
+TELEGRAM_TOKEN=your_telegram_token
+```
+
+## Example Output
+
+```
+=== AI Agent Closed Loop System ===
+
+Agent: Crow
+Model: claude-sonnet-4
+
+--- Test 1: Simple Query ---
+[Crow] Planning: Hello...
+Result: Processing completed.
+
+--- Test 2: Search Query ---
+[Crow] Executing with tools: webSearch
+Result: 1/1 operations completed.
+
+--- Test 3: Closed Loop Feedback ---
+[Crow] Adjusting based on feedback...
+```
+
+## Architecture
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│  Input      │────▶│  Planning    │────▶│  Execution  │
+│  (User)     │     │  (Intent)    │     │  (Tools)    │
+└─────────────┘     └──────────────┘     └─────────────┘
+                                               │
+                    ┌──────────────┐           │
+                    │  Adjustment  │◀──────────┘
+                    │  (Feedback)  │
+                    └──────────────┘
+                           │
+                    ┌──────────────┐
+                    │   Memory     │
+                    │  (Storage)   │
+                    └──────────────┘
+```
+
+### Components
+
+1. **ClosedLoopAgent**: Main agent class
+2. **AgentMemory**: Memory management system
+3. **ToolRegistry**: Tool registration and execution
+4. **FeedbackLoop**: Feedback collection and analysis
+5. **ChannelManager**: Multi-channel management
+
+## License
+
+MIT
+
+---
+
+Author: [https://github.com/exiahuang](https://github.com/exiahuang)
+Organization: [https://github.com/wakuwaku-lab](https://github.com/wakuwaku-lab)
+Project: [https://wakuwaku-lab.github.io/ai-agent-closed-loop](https://wakuwaku-lab.github.io/ai-agent-closed-loop)
+
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"ja","title":"AI Agent Closed Loop","excerpt":"AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"zh","title":"AI Agent Closed Loop","excerpt":"演示AI代理闭环系统的项目。基于OpenClaw的概念。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"en","title":"AI Agent Closed Loop","excerpt":"A project demonstrating an AI agent closed-loop system. Based on OpenClaw concepts.","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"ja","title":"ピアノ楽譜プレイヤー","excerpt":"Reactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/ja/"},{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"ja","title":"Claude Code × Notion MCP 求人票作成デモ","excerpt":"このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""},{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"ja","title":"Agentic Project Template","excerpt":"Claude Codeのエージェンティックエンジニアリングを実証するテンプレートプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

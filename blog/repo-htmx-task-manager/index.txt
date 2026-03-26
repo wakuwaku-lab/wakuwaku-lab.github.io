@@ -1,0 +1,161 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-htmx-task-manager","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-htmx-task-manager","d"],{"children":["__PAGE__?{\"id\":\"repo-htmx-task-manager\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-htmx-task-manager","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T732,
+# htmx Task Manager Demo
+
+htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。
+
+## 機能
+
+- **インクリメンタル検索**: 検索ボックスに入力するとリアルタイムでタスクが絞り込まれます（300ms デバウンス付き）
+- **インライン編集**: タスクのタイトルやステータスをクリックして直接編集
+- **削除アニメーション**: 確認ダイアログ付きの削除、フェードアウトアニメーション
+- **詳細パネル**: タスクを選択して詳細情報を表示
+
+## 使い方
+
+`src/index.html` をブラウザで開くだけで動作します。
+
+```bash
+# ローカルサーバーで開く場合
+cd htmx-task-manager/src
+python -m http.server 8000
+# または
+npx serve
+```
+
+ブラウザで `http://localhost:8000` にアクセス
+
+## htmx の主要属性
+
+| 属性 | 説明 |
+|------|------|
+| `hx-get` | GET リクエストを送信 |
+| `hx-post` | POST リクエストを送信 |
+| `hx-patch` | PATCH リクエストを送信 |
+| `hx-delete` | DELETE リクエストを送信 |
+| `hx-target` | レスポンスを挿入する先を指定 |
+| `hx-trigger` | リクエストが発生するトリガーを指定 |
+| `hx-swap` | レスポンスの挿入方法を指定 |
+| `hx-indicator` | ローディング表示用の要素を指定 |
+| `hx-confirm` | 確認ダイアログを表示 |
+
+## 参考
+
+- [htmx 公式サイト](https://htmx.org/)
+- [htmx Examples](https://htmx.org/examples/)
+- [HTMLを拡張し、JSなしで動的UIを作る「htmx」 | gihyo.jp](https://gihyo.jp/article/2026/02/htmx-introduction)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+9:T732,
+# htmx Task Manager Demo
+
+htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。
+
+## 機能
+
+- **インクリメンタル検索**: 検索ボックスに入力するとリアルタイムでタスクが絞り込まれます（300ms デバウンス付き）
+- **インライン編集**: タスクのタイトルやステータスをクリックして直接編集
+- **削除アニメーション**: 確認ダイアログ付きの削除、フェードアウトアニメーション
+- **詳細パネル**: タスクを選択して詳細情報を表示
+
+## 使い方
+
+`src/index.html` をブラウザで開くだけで動作します。
+
+```bash
+# ローカルサーバーで開く場合
+cd htmx-task-manager/src
+python -m http.server 8000
+# または
+npx serve
+```
+
+ブラウザで `http://localhost:8000` にアクセス
+
+## htmx の主要属性
+
+| 属性 | 説明 |
+|------|------|
+| `hx-get` | GET リクエストを送信 |
+| `hx-post` | POST リクエストを送信 |
+| `hx-patch` | PATCH リクエストを送信 |
+| `hx-delete` | DELETE リクエストを送信 |
+| `hx-target` | レスポンスを挿入する先を指定 |
+| `hx-trigger` | リクエストが発生するトリガーを指定 |
+| `hx-swap` | レスポンスの挿入方法を指定 |
+| `hx-indicator` | ローディング表示用の要素を指定 |
+| `hx-confirm` | 確認ダイアログを表示 |
+
+## 参考
+
+- [htmx 公式サイト](https://htmx.org/)
+- [htmx Examples](https://htmx.org/examples/)
+- [HTMLを拡張し、JSなしで動的UIを作る「htmx」 | gihyo.jp](https://gihyo.jp/article/2026/02/htmx-introduction)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+a:T732,
+# htmx Task Manager Demo
+
+htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。
+
+## 機能
+
+- **インクリメンタル検索**: 検索ボックスに入力するとリアルタイムでタスクが絞り込まれます（300ms デバウンス付き）
+- **インライン編集**: タスクのタイトルやステータスをクリックして直接編集
+- **削除アニメーション**: 確認ダイアログ付きの削除、フェードアウトアニメーション
+- **詳細パネル**: タスクを選択して詳細情報を表示
+
+## 使い方
+
+`src/index.html` をブラウザで開くだけで動作します。
+
+```bash
+# ローカルサーバーで開く場合
+cd htmx-task-manager/src
+python -m http.server 8000
+# または
+npx serve
+```
+
+ブラウザで `http://localhost:8000` にアクセス
+
+## htmx の主要属性
+
+| 属性 | 説明 |
+|------|------|
+| `hx-get` | GET リクエストを送信 |
+| `hx-post` | POST リクエストを送信 |
+| `hx-patch` | PATCH リクエストを送信 |
+| `hx-delete` | DELETE リクエストを送信 |
+| `hx-target` | レスポンスを挿入する先を指定 |
+| `hx-trigger` | リクエストが発生するトリガーを指定 |
+| `hx-swap` | レスポンスの挿入方法を指定 |
+| `hx-indicator` | ローディング表示用の要素を指定 |
+| `hx-confirm` | 確認ダイアログを表示 |
+
+## 参考
+
+- [htmx 公式サイト](https://htmx.org/)
+- [htmx Examples](https://htmx.org/examples/)
+- [HTMLを拡張し、JSなしで動的UIを作る「htmx」 | gihyo.jp](https://gihyo.jp/article/2026/02/htmx-introduction)
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-htmx-task-manager","repo":"htmx-task-manager","lang":"ja","title":"htmx Task Manager Demo","excerpt":"htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/htmx-task-manager","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/htmx-task-manager/","html_url":"https://github.com/wakuwaku-lab/htmx-task-manager","slide_url":""},"content":"$8"},"zh":{"post":{"id":"repo-htmx-task-manager","repo":"htmx-task-manager","lang":"zh","title":"htmx Task Manager Demo","excerpt":"htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/htmx-task-manager","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/htmx-task-manager/","html_url":"https://github.com/wakuwaku-lab/htmx-task-manager","slide_url":""},"content":"$9"},"en":{"post":{"id":"repo-htmx-task-manager","repo":"htmx-task-manager","lang":"en","title":"htmx Task Manager Demo","excerpt":"htmx を使用した動的UIの実装例です。JavaScript をほとんど書かずに、HTML 属性だけで動的なインタラクションを実現できます。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/htmx-task-manager","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/htmx-task-manager/","html_url":"https://github.com/wakuwaku-lab/htmx-task-manager","slide_url":""},"content":"$a"}},"relatedPosts":[{"id":"repo-playwright-test-agents-example","repo":"playwright-test-agents-example","lang":"ja","title":"Playwright Test Agents Example","excerpt":"- Node.js 18+ (recommended 20+)","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/playwright-test-agents-example","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.06","category":"HTML","tags":[],"homepage":"https://wakuwaku-lab.github.io/playwright-test-agents-example/","html_url":"https://github.com/wakuwaku-lab/playwright-test-agents-example","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null

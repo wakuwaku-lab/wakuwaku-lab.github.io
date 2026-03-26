@@ -1,0 +1,59 @@
+3:I[4707,[],""]
+5:I[6423,[],""]
+4:["id","repo-piano-app-winning-run","d"]
+0:["znIzl7EeG4EeVePhwKq3C",[[["",{"children":["blog",{"children":[["id","repo-piano-app-winning-run","d"],{"children":["__PAGE__?{\"id\":\"repo-piano-app-winning-run\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["id","repo-piano-app-winning-run","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/next1/static/css/b7a4093af05ed29e.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"async":true,"defer":true,"src":"https://buttons.github.io/buttons.js"}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]]}]],null],null],["$L6",null]]]]
+7:I[3998,["648","static/chunks/648-391a01815623404c.js","274","static/chunks/274-4e9d77a08143c853.js","548","static/chunks/app/blog/%5Bid%5D/page-b57ca433291dca53.js"],"default"]
+8:T55d,
+# Piano Score Player
+
+An interactive piano score player built with React. Renders MusicXML sheet music and plays it back with real piano samples.
+
+## Features
+
+- 🎼 Sheet music rendering via [OpenSheetMusicDisplay](https://opensheetmusicdisplay.org/)
+- 🎹 Real acoustic grand piano samples (MusyngKite soundfont)
+- ▶️ Playback with cursor tracking synchronized to audio
+- ⌨️ Keyboard input to play notes manually
+- 🖱️ Click piano keys to play
+- 🎚️ Adjustable tempo (BPM)
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
+
+## Controls
+
+| Control | Action |
+|---------|--------|
+| Space | Play / Stop |
+| ▶ Play button | Play / Stop |
+| ⏮ Reset button | Return to beginning |
+| Tempo slider | Adjust playback speed |
+| Piano keys (click) | Play individual notes |
+| Keyboard `a s d f g h j k l` | Play notes C4–E5 |
+| Keyboard `w e t y u o p` | Play black keys |
+
+## Score
+
+`public/score.mxl` — 爆走兄弟レッツ＆ゴー!! ウィニング・ラン！−風になりたい
+
+## Tech Stack
+
+- React + Vite
+- [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay)
+- [soundfont-player](https://github.com/danigb/soundfont-player)
+- Web Audio API
+
+---
+
+**Author:** [exia.huang](https://github.com/exiahuang)  
+**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)
+
+2:["$","$L7",null,{"postsByLang":{"ja":{"post":{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"ja","title":"ピアノ楽譜プレイヤー","excerpt":"Reactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/ja/"},"content":"\n# ピアノ楽譜プレイヤー\n\nReactで構築したインタラクティブなピアノ楽譜プレイヤーです。MusicXML楽譜をレンダリングし、本物のピアノサンプルで再生します。\n\n## 機能\n\n- 🎼 [OpenSheetMusicDisplay](https://opensheetmusicdisplay.org/) による楽譜レンダリング\n- 🎹 本物のグランドピアノサンプル（MusyngKiteサウンドフォント）\n- ▶️ カーソルと音声が同期した再生\n- ⌨️ キーボード入力による手動演奏\n- 🖱️ ピアノキーをクリックして演奏\n- 🎚️ テンポ（BPM）調整\n\n## はじめに\n\n```bash\nnpm install\nnpm run dev\n```\n\nhttp://localhost:5173 を開く\n\n## 操作方法\n\n| 操作 | 機能 |\n|------|------|\n| スペースキー | 再生 / 停止 |\n| ▶ 再生ボタン | 再生 / 停止 |\n| ⏮ リセットボタン | 先頭に戻る |\n| テンポスライダー | 再生速度の調整 |\n| ピアノキー（クリック） | 単音の演奏 |\n| キーボード `a s d f g h j k l` | C4〜E5 白鍵の演奏 |\n| キーボード `w e t y u o p` | 黒鍵の演奏 |\n\n## 楽譜\n\n`public/score.mxl` — 爆走兄弟レッツ＆ゴー!! ウィニング・ラン！−風になりたい\n\n## 技術スタック\n\n- React + Vite\n- [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay)\n- [soundfont-player](https://github.com/danigb/soundfont-player)\n- Web Audio API\n\n---\n\n**Author:** [exia.huang](https://github.com/exiahuang)  \n**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)\n\n"},"zh":{"post":{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"zh","title":"钢琴乐谱播放器","excerpt":"基于 React 的交互式钢琴乐谱播放器，渲染 MusicXML 乐谱并使用真实钢琴采样进行播放。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/zh-CN/"},"content":"\n# 钢琴乐谱播放器\n\n基于 React 的交互式钢琴乐谱播放器，渲染 MusicXML 乐谱并使用真实钢琴采样进行播放。\n\n## 功能特性\n\n- 🎼 通过 [OpenSheetMusicDisplay](https://opensheetmusicdisplay.org/) 渲染乐谱\n- 🎹 真实三角钢琴采样（MusyngKite 音源）\n- ▶️ 播放时光标与音频同步\n- ⌨️ 键盘输入手动弹奏音符\n- 🖱️ 点击钢琴键弹奏\n- 🎚️ 可调节速度（BPM）\n\n## 快速开始\n\n```bash\nnpm install\nnpm run dev\n```\n\n打开 http://localhost:5173\n\n## 操作说明\n\n| 操作 | 功能 |\n|------|------|\n| 空格键 | 播放 / 停止 |\n| ▶ 播放按钮 | 播放 / 停止 |\n| ⏮ 重置按钮 | 返回开头 |\n| 速度滑块 | 调整播放速度 |\n| 点击钢琴键 | 弹奏单个音符 |\n| 键盘 `a s d f g h j k l` | 弹奏 C4–E5 白键 |\n| 键盘 `w e t y u o p` | 弹奏黑键 |\n\n## 乐谱\n\n`public/score.mxl` — 爆走兄弟レッツ＆ゴー!! ウィニング・ラン！−風になりたい\n\n## 技术栈\n\n- React + Vite\n- [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay)\n- [soundfont-player](https://github.com/danigb/soundfont-player)\n- Web Audio API\n\n---\n\n**Author:** [exia.huang](https://github.com/exiahuang)  \n**Organization:** [wakuwaku-lab](https://github.com/wakuwaku-lab)\n\n"},"en":{"post":{"id":"repo-piano-app-winning-run","repo":"piano-app-winning-run","lang":"en","title":"Piano Score Player","excerpt":"An interactive piano score player built with React. Renders MusicXML sheet music and plays it back with real piano sampl","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/piano-app-winning-run","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.19","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/piano-app-winning-run/","html_url":"https://github.com/wakuwaku-lab/piano-app-winning-run","slide_url":"https://wakuwaku-lab.github.io/piano-app-winning-run/en/"},"content":"$8"}},"relatedPosts":[{"id":"repo-ai-agent-closed-loop","repo":"ai-agent-closed-loop","lang":"ja","title":"AI Agent Closed Loop","excerpt":"AIエージェントのクローズドループシステムを演示するプロジェクトです。OpenClawのコンセプトに基づいています。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/ai-agent-closed-loop","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/ai-agent-closed-loop/","html_url":"https://github.com/wakuwaku-lab/ai-agent-closed-loop","slide_url":""},{"id":"repo-claude-notion-mcp-jobposting","repo":"claude-notion-mcp-jobposting","lang":"ja","title":"Claude Code × Notion MCP 求人票作成デモ","excerpt":"このプロジェクトは、Claude CodeとNotion MCPを組み合わせた業務自動化のデモです。Findy Tech Blogの記事「1時間を5分に短縮！Claude Code × Notion MCPで実現した業務自動化の全貌」に基づ","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/claude-notion-mcp-jobposting","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.18","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/claude-notion-mcp-jobposting/","html_url":"https://github.com/wakuwaku-lab/claude-notion-mcp-jobposting","slide_url":""},{"id":"repo-agentic-project-template","repo":"agentic-project-template","lang":"ja","title":"Agentic Project Template","excerpt":"Claude Codeのエージェンティックエンジニアリングを実証するテンプレートプロジェクトです。","thumbnail":"https://opengraph.githubassets.com/1/wakuwaku-lab/agentic-project-template","author":{"name":"wakuwaku-lab","avatar":"https://avatars.githubusercontent.com/wakuwaku-lab"},"date":"2026.03.16","category":"JavaScript","tags":["JavaScript"],"homepage":"https://wakuwaku-lab.github.io/agentic-project-template/","html_url":"https://github.com/wakuwaku-lab/agentic-project-template","slide_url":""}],"defaultLang":"ja","repoStats":null}]
+6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Wakuwaku-lab"}],["$","meta","3",{"name":"description","content":"GitHubプロジェクトのショーケース"}]]
+1:null
